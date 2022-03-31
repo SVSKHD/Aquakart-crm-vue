@@ -1,7 +1,12 @@
-import { ref } from "vue";
+import Axios from "axios"
+
+const createInvoice = (data) => {
+  Axios.post(`http://localhost:8000/crm/invoice` , data) 
+ };
 
 const invoiceCrud = () => {
-  const createInvoice = () => {};
+ return {createInvoice} 
 };
+
 
 export default invoiceCrud;
