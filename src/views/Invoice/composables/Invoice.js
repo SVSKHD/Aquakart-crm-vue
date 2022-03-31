@@ -16,7 +16,7 @@ const deleteInvoice = async(name) =>{
  await Axios.delete(`${process.env.VUE_APP_ROOT_API}/${name}`)
 }
 
-const invoiceCrud = () => {
+const invoiceCrud =() => {
   return { createInvoice, loadInvoice , updateInvoice , deleteInvoice};
 };
 
