@@ -105,8 +105,8 @@
             <q-input v-model="invoiceData.paymentType" dense outlined label="Payment Type" />
           </div>
           <div class="col-5">
-            <h5>Payment : {{ payemnt }}</h5>
-            <h6>Payment Type : {{ paymentType }}</h6>
+            <h5>Payment : {{ invoiceData.price }}</h5>
+            <h6>Payment Type : {{ invoiceData.paymentType }}</h6>
           </div>
         </div>
       </q-card-section>
@@ -123,6 +123,7 @@
 
 <script>
 import { ref } from "vue";
+//import Router from "../../router/index"
 import invoiceCrud from "./composables/Invoice"
 export default {
   name: "Invoices",
@@ -150,7 +151,6 @@ export default {
     });
     //functions
     const invoiceSubmit = () => {
-      testArray.value.push(invoiceData.value)
       console.log("test-Array" , testArray.value)
       createInvoice(invoiceData.value) 
     };
