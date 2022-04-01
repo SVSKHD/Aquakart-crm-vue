@@ -47,7 +47,7 @@ export default {
         name: "Invoices",
         icon: "",
         sub: true,
-        submenu: { name: "Create-Invoice", path: "/invoice" },
+        submenu: { name: "Create-Invoice", path: "/invoice-create" },
       },
       {
         name: "Contact",

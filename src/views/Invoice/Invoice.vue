@@ -123,7 +123,7 @@
 
 <script>
 import { ref } from "vue";
-//import Router from "../../router/index"
+import Router from "../../router/index"
 import invoiceCrud from "./composables/Invoice"
 export default {
   name: "Invoices",
@@ -153,6 +153,7 @@ export default {
     const invoiceSubmit = () => {
       console.log("test-Array" , testArray.value)
       createInvoice(invoiceData.value) 
+      Router.push("/invoices")
     };
     return {
       //variables

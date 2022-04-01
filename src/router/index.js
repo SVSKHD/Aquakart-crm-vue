@@ -3,7 +3,9 @@ import { createRouter, createWebHistory } from "vue-router";
 import Layout from "../Layout/Layout";
 //pages
 import Home from "../views/Home.vue";
+//invoices
 import Invoice from "../views/Invoice/Invoice";
+import Invoices from "../views/Invoice/invoices"
 import Contact from "../views/users/contact";
 
 const routes = [
@@ -14,7 +16,8 @@ const routes = [
     children: [
       { path: "/", name: "Home", component: Home },
       //invoices
-      { path: "/invoices", name: "Invoices", component: Invoice },
+      { path: "/invoice-create", name: "Invoice-create", component: Invoice },
+      { path: "/invoices" , name:"Invoices" , component:Invoices},
       //contacts
       { path: "/contacts", name: "Contacts", component: Contact },
     ],
