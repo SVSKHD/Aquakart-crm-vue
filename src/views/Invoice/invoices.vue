@@ -12,7 +12,7 @@
       <q-separator dark inset />
 
       <q-card-actions>
-        <q-btn flat icon="print" />
+        <q-btn @click="redirectToIndividualInvoice(item.name)" flat icon="print" />
       </q-card-actions>
     </q-card>
   </div>
@@ -22,6 +22,7 @@
 <script>
 import { ref, onBeforeMount } from "vue";
 import invoiceCrud from "../Invoice/composables/Invoice";
+import router from '../../router';
 //import Axios  from 'axios'
 export default {
   setup() {
@@ -32,12 +33,15 @@ export default {
         data.value = invoicedata.data;
       });
     });
-    console.log("data", data.value);
+    const redirectToIndividualInvoice = (name) =>{
+      router.push(`/invoice/${name}`)
+    }
     return {
       //variables
       data,
       //functions
       loadInvoices,
+      redirectToIndividualInvoice
     };
   },
 };
