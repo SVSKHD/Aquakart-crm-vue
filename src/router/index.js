@@ -6,6 +6,7 @@ import Home from "../views/Home.vue";
 //invoices
 import Invoice from "../views/Invoice/Invoice";
 import Invoices from "../views/Invoice/invoices"
+import IndividualInvoice from "../views/Invoice/individualInvoice"
 import Contact from "../views/users/contact";
 
 const routes = [
@@ -22,6 +23,12 @@ const routes = [
       { path: "/contacts", name: "Contacts", component: Contact },
     ],
   },
+  //indovidual Invoices 
+  {
+   path:"/invoice/:name",
+   name:"InvoiceName",
+   component:IndividualInvoice
+  }
 ];
 
 const router = createRouter({
