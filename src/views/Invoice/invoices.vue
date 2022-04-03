@@ -12,22 +12,12 @@
 
           <q-separator dark inset />
 
-<<<<<<< HEAD
-          <q-card-actions>
-            <q-btn-group outline>
-              <q-btn outline color="green" icon="print" />
-              <q-btn outline color="green" icon="document" />
-            </q-btn-group>
-          </q-card-actions>
-        </q-card>
-      </div>
-    </div>
-=======
       <q-card-actions>
         <q-btn @click="redirectToIndividualInvoice(item.name)" flat icon="print" />
       </q-card-actions>
     </q-card>
->>>>>>> f62f12acfdaa5a4e7770b1484e6d82917994ca39
+  </div>
+    </div>
   </div>
 </template>
 

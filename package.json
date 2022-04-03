@@ -13,13 +13,7 @@
     "@quasar/extras": "^1.0.0",
     "axios": "^0.26.1",
     "core-js": "^3.6.5",
-<<<<<<< HEAD
-    "html-to-pdfmake": "^2.3.10",
     "jspdf": "^2.5.1",
-    "pdfmake": "^0.2.5",
-=======
-    "jspdf": "^2.5.1",
->>>>>>> f62f12acfdaa5a4e7770b1484e6d82917994ca39
     "quasar": "^2.0.0",
     "register-service-worker": "^1.7.1",
     "shortid": "^2.2.16",
