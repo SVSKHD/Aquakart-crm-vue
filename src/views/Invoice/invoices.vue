@@ -1,22 +1,27 @@
 <template>
-<div class="q-pa-md">
+  <div class="q-pa-md">
     <q-input label="Search Name" outlined dense />
-    <br/>
-  <div v-for="(item, index) in data" :key="index">
-    <q-card>
-      <q-card-section>
-        <div class="text-h6">{{ item.name }}</div>
-        <div class="text-subtitle2">{{ item.phone }}</div>
-      </q-card-section>
+    <br />
+    <div class="row">
+      <div class="col-3" v-for="(item, index) in data" :key="index">
+        <q-card>
+          <q-card-section>
+            <div class="text-h6">{{ item.name }}</div>
+            <div class="text-subtitle2">{{ item.phone }}</div>
+          </q-card-section>
 
-      <q-separator dark inset />
+          <q-separator dark inset />
 
-      <q-card-actions>
-        <q-btn flat icon="print" />
-      </q-card-actions>
-    </q-card>
+          <q-card-actions>
+            <q-btn-group outline>
+              <q-btn outline color="green" icon="print" />
+              <q-btn outline color="green" icon="document" />
+            </q-btn-group>
+          </q-card-actions>
+        </q-card>
+      </div>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
