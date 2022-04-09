@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md">
-    <q-card :to="path" class="my-card header text-white">
+    <q-card v-ripple :to="path" class="my-card header text-white q-hoverable">
       <q-card-section>
         <div class="text-h6">{{ name }}</div>
       </q-card-section>

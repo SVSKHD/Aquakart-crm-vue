@@ -6,8 +6,37 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer show-if-above v-model="drawer" side="left" bordered>
-      <!-- drawer content -->
+    <q-drawer
+      show-if-above
+      v-model="drawer"
+      side="left"
+      bordered
+      class="header"
+    >
+      <q-scroll-area class="fit">
+        <q-list>
+          <div class="q-pa-md">
+            <div class="text-h6">Aquakart Offline Menu</div>
+            <hr />
+          </div>
+
+          <template v-for="(menuItem, index) in menuList" :key="index">
+            <q-item
+              clickable
+              :to="menuItem.path"
+              :active="menuItem.label === 'Outbox'"
+              v-ripple
+            >
+              <q-item-section avatar>
+                <q-icon :name="menuItem.icon" />
+              </q-item-section>
+              <q-item-section>
+                {{ menuItem.label }}
+              </q-item-section>
+            </q-item>
+          </template>
+        </q-list>
+      </q-scroll-area>
     </q-drawer>
 
     <q-page-container>
@@ -57,9 +86,18 @@ export default {
       },
     ]);
 
-    // let AquaMenu = ref([
-    //   {name : }
-    // ])
+    let menuList = ref([
+      {
+        label: "invoices",
+        icon: "date_range",
+        path: "/invoices",
+      },
+      {
+        label: "contacts",
+        icon:"person",
+        path:"/contacts"
+      }, 
+    ]);
 
     // functions
     const menuToggle = () => {
@@ -71,6 +109,7 @@ export default {
       icon,
       drawer,
       menu,
+      menuList,
       //functions
       menuToggle,
     };
