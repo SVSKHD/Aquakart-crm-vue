@@ -54,8 +54,14 @@
               </div>
               <!-- gst details -->
               <div class="col-5 margin">
-                <q-toggle size="xl" v-model="gst" val="xl" />
-                <div v-if="gst">
+                <q-toggle 
+                size="xl" 
+                v-model="gstValue" 
+                @update:model-value="val=>manipulateGst(val)" 
+                val="xl" 
+                />
+                {{gstValue}}
+                <div v-if="gstValue">
                   <p>GST Field</p>
                   <hr />
                   <q-input v-model="invoiceData.businessName" dense outlined label="Business Name" />
@@ -128,7 +134,7 @@ import invoiceCrud from "./composables/Invoice"
 export default {
   name: "Invoices",
   setup() {
-    let gst = ref(false);
+    let gstValue = ref(false)
     let testArray = ref([])
     let date = new Date().getDate()
     let month = new Date().getMonth()
@@ -139,7 +145,7 @@ export default {
       email: "",
       phone: "",
       address: "",
-      gstInvoice: gst.value,
+      gstInvoice: gstValue.value,
       Gst: "",
       businessName: "",
       businessAddress: "",
@@ -150,6 +156,13 @@ export default {
       paymentType: "",
     });
     //functions
+    const manipulateGst = (val) =>{
+      console.log("gst value" , val)
+      invoiceData.value.gstInvoice = val
+      console.log("invoice value" , invoiceData.value.gstInvoice)
+    }
+
+    console.log("gst Type",invoiceData.value.gstInvoice)
     const invoiceSubmit = () => {
       console.log("test-Array" , testArray.value)
       createInvoice(invoiceData.value) 
@@ -157,14 +170,15 @@ export default {
     };
     return {
       //variables
-      gst,
       date,
       month, 
       year,
       testArray,
       invoiceData,
+      gstValue,
       //functions
       invoiceSubmit,
+      manipulateGst
     };
   },
 };

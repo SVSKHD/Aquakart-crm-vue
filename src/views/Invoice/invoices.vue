@@ -1,41 +1,27 @@
 <template>
   <div class="q-pa-md">
-    <!-- tabs start -->
-
-    <div class="text-left">
-      <q-btn-dropdown
-        split
-        class="head text-white"
-        push
-        no-caps
-        @click="onMainClick"
-      >
-        <template v-slot:label>
-          <div class="row items-center no-wrap">
-            <div class="text-center">Invoice Operations</div>
-          </div>
-        </template>
-
-        <q-list>
-          <q-item clickable v-close-popup @click="onCreateClick">
-            <q-item-section>
-              <q-item-label>Create Invoice</q-item-label>
-            </q-item-section>
-            <q-item-section side>
-              <q-icon name="table_chart" />
-            </q-item-section>
-          </q-item>
-
-          <q-item clickable v-close-popup @click="onEditClick">
-            <q-item-section>
-              <q-item-label>Edit Invoice</q-item-label>
-            </q-item-section>
-            <q-item-section side>
-              <q-icon name="pages" />
-            </q-item-section>
-          </q-item>
-        </q-list>
-      </q-btn-dropdown>
+    <div class="row justify-evenly">
+      <div class="col-5">
+        <q-input label="Search Name" outlined dense />
+      </div>
+      <div class="col-5">
+        <q-btn-group spread>
+          <q-btn
+            dense
+            style="background: #041562; color: white;"
+            to="/invoice-create"
+            label="Create Invoice"
+            icon="timeline"
+          />
+          <q-btn
+            dense
+            style="background: #041562; color: white;"
+            to="/invoice-update"
+            label="Update Invoice"
+            icon="visibility"
+          />
+        </q-btn-group>
+      </div>
     </div>
     <br />
 
@@ -92,7 +78,7 @@
 </template>
 
 <script>
-import { ref, onBeforeMount } from "vue";
+import { ref, onMounted } from "vue";
 import invoiceCrud from "../Invoice/composables/Invoice";
 import router from "../../router";
 export default {
@@ -100,16 +86,14 @@ export default {
     let tab = ref("invoices");
     const { loadInvoice } = invoiceCrud();
     let data = ref([]);
-    const onCreateClick = () => {
-      router.push("/invoice-create");
-    };
-    const onEditClick = () => {
-      router.push("/invoice-edit");
-    };
-    const loadInvoices = onBeforeMount(() => {
-      loadInvoice().then((invoicedata) => {
-        data.value = invoicedata.data;
-      });
+    let Loading = ref(false);
+    const loadInvoices = onMounted(() => {
+      loadInvoice()
+        .then((invoicedata) => {
+          Loading.value = true;
+          data.value = invoicedata.data;
+        })
+        .then(() => (Loading.value = false));
     });
     const redirectToIndividualInvoice = (name) => {
       router.push(`/invoice/${name}`);
@@ -121,8 +105,6 @@ export default {
       //functions
       loadInvoices,
       redirectToIndividualInvoice,
-      onCreateClick,
-      onEditClick,
     };
   },
 };
