@@ -107,7 +107,7 @@ import { ref, onMounted } from "vue";
 import { jsPDF } from "jspdf";
 import { useRoute } from "vue-router";
 import invoiceCrud from "./composables/Invoice";
-import html2canvas from "html2canvas"
+import html2canvas from "html2canvas";
 
 export default {
   setup() {
@@ -148,15 +148,14 @@ export default {
     const generatePdf = () => {
       //const doc = jsPDF()
       console.log(content.value);
-      window.html2canvas = html2canvas
-      let doc = new jsPDF('p' , 'pt' ,'a2')
-      doc.html(document.querySelector('#content'),{
-        callback:function(pdf){
-          pdf.save("invoice.pdf")
-        }
-      })
+      window.html2canvas = html2canvas;
+      let doc = new jsPDF("p", "pt", "a2");
+      doc.html(document.querySelector("#content"), {
+        callback: function (pdf) {
+          pdf.save("invoice.pdf");
+        },
+      });
     };
-
 
     const loadIndividualInvoice = onMounted(() => {
       filterInvoice(data).then((item) => {
