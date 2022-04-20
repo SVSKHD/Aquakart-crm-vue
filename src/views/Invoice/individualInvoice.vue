@@ -29,9 +29,15 @@
         <hr />
         <q-card>
           <q-card-section>
-            <div ref="content">
+            <div ref="content" id="content">
+              <div class="text-center">
+                <div class="text-h4">Kundana Enterprises</div>
+                <div class="text-h6">Aquakart.co.in</div>
+                <div class="text-subtitle">{{ userData.date }}</div>
+                <div></div>
+              </div>
               <div class="row">
-                <div class="col-6">
+                <div class="col-6 text-left">
                   <h5>Invoice No : {{ userData.invoiceNo }}</h5>
                 </div>
                 <div class="col-6 text-right">
@@ -98,9 +104,11 @@
 
 <script>
 import { ref, onMounted } from "vue";
-//import { jsPDF } from "jspdf";
+import { jsPDF } from "jspdf";
 import { useRoute } from "vue-router";
 import invoiceCrud from "./composables/Invoice";
+import html2canvas from "html2canvas"
+
 export default {
   setup() {
     const route = useRoute();
@@ -140,7 +148,15 @@ export default {
     const generatePdf = () => {
       //const doc = jsPDF()
       console.log(content.value);
+      window.html2canvas = html2canvas
+      let doc = new jsPDF('p' , 'pt' ,'a2')
+      doc.html(document.querySelector('#content'),{
+        callback:function(pdf){
+          pdf.save("invoice.pdf")
+        }
+      })
     };
+
 
     const loadIndividualInvoice = onMounted(() => {
       filterInvoice(data).then((item) => {
