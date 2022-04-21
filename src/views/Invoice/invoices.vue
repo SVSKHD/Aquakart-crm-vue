@@ -46,8 +46,8 @@
         <q-input label="Search Name" outlined dense />
         <br />
         <div class="row">
-          <div class="col-3" v-for="(item, index) in data" :key="index">
-            <q-card>
+          <div class="col-2" v-for="(item, index) in data" :key="index">
+            <q-card class="margin">
               <q-card-section>
                 <div class="text-h6">{{ item.name }}</div>
                 <div class="text-subtitle2">{{ item.phone }}</div>
@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onBeforeMount } from "vue";
 import invoiceCrud from "../Invoice/composables/Invoice";
 import router from "../../router";
 
@@ -89,7 +89,7 @@ export default {
     const { loadInvoice } = invoiceCrud();
     let data = ref([]);
     let Loading = ref(false);
-    const loadInvoices = onMounted(() => {
+    const loadInvoices = onBeforeMount(() => {
       loadInvoice()
         .then((invoicedata) => {
           Loading.value = true;
@@ -116,5 +116,8 @@ export default {
 .head {
   background-color: #041562;
   border-radius: 0.5rem;
+}
+.margin{
+  margin: 5px;
 }
 </style>

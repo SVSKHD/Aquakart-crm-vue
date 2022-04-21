@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-md">
     <q-toolbar class="head text-white q-my-md shadow-2">
-      <q-btn stretch flat icon="home" to="/" />
+      <q-btn stretch flat icon="home" to="/invoices" />
       <q-space />
       <q-separator dark vertical />
       <q-btn stretch flat label="Print" />

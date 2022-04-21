@@ -2,6 +2,7 @@
   <q-layout view="hHh lpR fFf">
     <q-header elevated class="header text-white">
       <q-toolbar>
+        <q-btn to="/" icon="home"/>
         <q-toolbar-title> Aquakart CRM </q-toolbar-title>
       </q-toolbar>
     </q-header>
@@ -16,7 +17,7 @@
       <q-scroll-area class="fit">
         <q-list>
           <div class="q-pa-md">
-            <div class="text-h6">Aquakart Offline Menu</div>
+            <div class="text-h6" >Aquakart Offline Menu</div>
             <hr />
           </div>
 
