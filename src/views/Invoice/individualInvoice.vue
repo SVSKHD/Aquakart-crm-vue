@@ -27,83 +27,88 @@
           />
         </q-btn-group>
         <hr />
-        <q-card>
-          <q-card-section>
-            <div ref="content" id="content">
-              <div class="text-center">
-                <div class="text-h4">Kundana Enterprises</div>
-                <div class="text-h6">Aquakart.co.in</div>
-                <div class="text-subtitle">{{ userData.date }}</div>
-                <div></div>
-              </div>
-              <div class="row">
-                <div class="col-6 text-left">
-                  <h5>Invoice No : {{ userData.invoiceNo }}</h5>
+        <div v-if="loading" class="marginalign">
+          <q-spinner color="primary" size="3em" />
+        </div>
+        <div v-else>
+          <q-card>
+            <q-card-section>
+              <div ref="content" id="content">
+                <div class="text-center">
+                  <div class="text-h4">Kundana Enterprises</div>
+                  <div class="text-h6">Aquakart.co.in</div>
+                  <div class="text-subtitle">{{ userData.date }}</div>
+                  <div></div>
                 </div>
-                <div class="col-6 text-right">
-                  <h5>Date : {{ userData.date }}</h5>
+                <div class="row">
+                  <div class="col-6 text-left">
+                    <h5>Invoice No : {{ userData.invoiceNo }}</h5>
+                  </div>
+                  <div class="col-6 text-right">
+                    <h5>Date : {{ userData.date }}</h5>
+                  </div>
                 </div>
-              </div>
-              <hr />
-              <div class="row justify-evenly">
-                <div class="col-5">
-                  <div class="text-left">
-                    <div class="text-h6">
-                      Name : <b>{{ userData.name }}</b>
+                <hr />
+                <div class="row justify-evenly">
+                  <div class="col-5">
+                    <div class="text-left">
+                      <div class="text-h6">
+                        Name : <b>{{ userData.name }}</b>
+                      </div>
+                      <div class="text-subtitle">
+                        Address : <b>{{ userData.address }}</b>
+                      </div>
+                      <div class="text-subtitle">
+                        Phone : <b>{{ userData.phone }}</b>
+                      </div>
                     </div>
-                    <div class="text-subtitle">
-                      Address : <b>{{ userData.address }}</b>
+                  </div>
+                  <div class="col-5">
+                    <div v-if="userData.gst">
+                      <div class="text-h6">
+                        Gst-Registered Name : <b>{{ userData.gstName }}</b>
+                      </div>
+                      <div class="text-subtitle">
+                        Gst-No : <b>{{ userData.gstNo }}</b>
+                      </div>
+                      <div class="text-subtitle">
+                        Gst-Address : <b>{{ userData.gstAddress }}</b>
+                      </div>
                     </div>
-                    <div class="text-subtitle">
-                      Phone : <b>{{ userData.phone }}</b>
+                    <div v-else>
+                      <div class="text-h6">No GST Input Given</div>
                     </div>
                   </div>
                 </div>
-                <div class="col-5">
-                  <div v-if="userData.gst">
-                    <div class="text-h6">
-                      Gst-Registered Name : <b>{{ userData.gstName }}</b>
-                    </div>
-                    <div class="text-subtitle">
-                      Gst-No : <b>{{ userData.gstNo }}</b>
-                    </div>
-                    <div class="text-subtitle">
-                      Gst-Address : <b>{{ userData.gstAddress }}</b>
-                    </div>
-                  </div>
-                  <div v-else>
-                    <div class="text-h6">No GST Input Given</div>
-                  </div>
+                <br />
+                <hr />
+                <div class="row justify-evenly">
+                  <div class="col-2"><b>Product Name</b></div>
+                  <div class="col-2"><b>Quantity</b></div>
+                  <div class="col-2"><b>GST-(18%)</b></div>
+                  <div class="col-2"><b>Price</b></div>
                 </div>
-              </div>
-              <br />
-              <hr />
-              <div class="row justify-evenly">
-                <div class="col-2"><b>Product Name</b></div>
-                <div class="col-2"><b>Quantity</b></div>
-                <div class="col-2"><b>GST-(18%)</b></div>
-                <div class="col-2"><b>Price</b></div>
-              </div>
-              <hr />
-              <div class="row justify-evenly">
-                <div class="col-2">
-                  Product Name - {{ userData.productname }}
+                <hr />
+                <div class="row justify-evenly">
+                  <div class="col-2">
+                    Product Name - {{ userData.productname }}
+                  </div>
+                  <div class="col-2">{{ userData.quantity }}</div>
+                  <div class="col-2">{{ gstValueGenerate() }} ₹ /-</div>
+                  <div class="col-2">{{ userData.price }} ₹ /-</div>
                 </div>
-                <div class="col-2">{{ userData.quantity }}</div>
-                <div class="col-2">{{ gstValueGenerate() }} ₹ /-</div>
-                <div class="col-2">{{ userData.price }} ₹ /-</div>
+                <hr />
               </div>
-              <hr />
-            </div>
-          </q-card-section>
-        </q-card>
+            </q-card-section>
+          </q-card>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onBeforeMount } from "vue";
 import { jsPDF } from "jspdf";
 import { useRoute } from "vue-router";
 import invoiceCrud from "./composables/Invoice";
@@ -113,6 +118,7 @@ export default {
   setup() {
     const route = useRoute();
     let gst = ref("");
+    let loading = ref(false);
     let content = ref("");
     let data = route.params.name;
     let userData = ref({
@@ -157,7 +163,8 @@ export default {
       });
     };
 
-    const loadIndividualInvoice = onMounted(() => {
+    const loadIndividualInvoice = onBeforeMount(() => {
+      loading.value = true;
       filterInvoice(data).then((item) => {
         const dataHold = item.data;
         dataHold.map((itemData) => {
@@ -176,6 +183,7 @@ export default {
           userData.value.price = itemData.price;
           userData.value.quantity = itemData.quantity;
           console.log("item data", itemData);
+          loading.value = false;
         });
       });
     });
@@ -183,6 +191,7 @@ export default {
     return {
       //variables
       gst,
+      loading,
       data,
       content,
       userData,
@@ -199,5 +208,8 @@ export default {
 <style>
 .head {
   background-color: #041562;
+}
+.marginalign{
+  margin-bottom: 2rem;
 }
 </style>
