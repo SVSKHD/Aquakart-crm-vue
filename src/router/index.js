@@ -7,6 +7,7 @@ import Home from "../views/Home.vue";
 import Invoice from "../views/Invoice/Invoice";
 import Invoices from "../views/Invoice/invoices"
 import IndividualInvoice from "../views/Invoice/individualInvoice"
+import UpdateInvoice from "../views/Invoice/editInvoice"
 import Contact from "../views/users/contact";
 
 const routes = [
@@ -18,7 +19,9 @@ const routes = [
       { path: "/", name: "Home", component: Home },
       //invoices
       { path: "/invoice-create", name: "Invoice-create", component: Invoice },
+      { path:"/invoice-update" , name:"Update-Invoice" , component:UpdateInvoice},
       { path: "/invoices" , name:"Invoices" , component:Invoices},
+      
       //contacts
       { path: "/contacts", name: "Contacts", component: Contact },
     ],

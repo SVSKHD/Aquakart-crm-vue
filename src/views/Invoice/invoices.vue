@@ -4,8 +4,7 @@
       <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3 ">
         <q-input label="Search Name" outlined dense  />
       </div>
-      <br/>
-      <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3">
+      <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3 m-2">
         <q-btn-group spread>
           <q-btn
             dense
@@ -60,7 +59,11 @@
                     flat
                     icon="print"
                   />
-                  <q-btn flat icon="edit"/>
+                  <q-btn 
+                  @click="redirectToEditInvoice(item.name)"
+                  flat 
+                  icon="edit"
+                  />
                 </q-card-actions>
               </q-card>
             </div>
@@ -99,6 +102,9 @@ export default {
     const redirectToIndividualInvoice = (name) => {
       router.push(`/invoice/${name}`);
     };
+    const redirectToEditInvoice = (name) =>{
+      router.push(`/invoice/${name}`)
+    }
     return {
       //variables
       data,
@@ -106,6 +112,7 @@ export default {
       //functions
       loadInvoices,
       redirectToIndividualInvoice,
+      redirectToEditInvoice
     };
   },
 };
