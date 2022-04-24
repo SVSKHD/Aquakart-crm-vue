@@ -1,10 +1,11 @@
 <template>
   <div class="q-pa-md">
     <div class="row justify-evenly">
-      <div class="col-5">
-        <q-input label="Search Name" outlined dense />
+      <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3 ">
+        <q-input label="Search Name" outlined dense  />
       </div>
-      <div class="col-5">
+      <br/>
+      <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3">
         <q-btn-group spread>
           <q-btn
             dense
@@ -12,13 +13,6 @@
             to="/invoice-create"
             label="Create Invoice"
             icon="timeline"
-          />
-          <q-btn
-            dense
-            style="background: #041562; color: white"
-            to="/invoice-update"
-            label="Update Invoice"
-            icon="visibility"
           />
         </q-btn-group>
       </div>
@@ -47,7 +41,7 @@
         <br />
 
         <div class="row">
-          <div class="col-2" v-for="(item, index) in data" :key="index">
+          <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3" v-for="(item, index) in data" :key="index">
             <div v-if="Loading">
               <q-spinner color="primary" size="3em" />
             </div>
@@ -66,6 +60,7 @@
                     flat
                     icon="print"
                   />
+                  <q-btn flat icon="edit"/>
                 </q-card-actions>
               </q-card>
             </div>
