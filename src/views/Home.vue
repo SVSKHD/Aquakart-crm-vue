@@ -58,10 +58,10 @@ export default {
         icon: "sub-categories",
       },
       {
-        name:"reviews",
-        path:"/review",
-        icon:'pages'
-      }
+        name: "reviews",
+        path: "/review",
+        icon: "pages",
+      },
     ]);
     return {
       //  variables

@@ -13,20 +13,15 @@
               <div class="col-4"><p class="p-align">Date :</p></div>
               <div class="col-4">
                 <div class="align">
-                <p class="p-align-date">{{`${date} -  ${month} - ${year}`}}</p>
+                  <p class="p-align-date">
+                    {{ `${date} -  ${month} - ${year}` }}
+                  </p>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-6">
-            <div class="row justify-content-evenly">
-              <div class="col-4"><p class="p-align">Invoice :</p></div>
-              <div class="col-4">
-                <div class="align">
-                  <q-input class="align" dense outlined label="Invoice No" />
-                </div>
-              </div>
-            </div>
+             <div/>
           </div>
         </div>
 
@@ -38,7 +33,12 @@
             <div class="row">
               <!-- customer details -->
               <div class="col-5 margin">
-                <q-input v-model="invoiceData.name" dense label="name" outlined />
+                <q-input
+                  v-model="invoiceData.name"
+                  dense
+                  label="name"
+                  outlined
+                />
                 <br />
                 <q-input
                   dense
@@ -48,25 +48,45 @@
                   label="Address"
                 />
                 <br />
-                <q-input v-model="invoiceData.phone" dense label="Phone" outlined />
-                <br/>
-                  <q-input v-model="invoiceData.email" dense label="Email" outlined />
+                <q-input
+                  v-model="invoiceData.phone"
+                  dense
+                  label="Phone"
+                  outlined
+                />
+                <br />
+                <q-input
+                  v-model="invoiceData.email"
+                  dense
+                  label="Email"
+                  outlined
+                />
               </div>
               <!-- gst details -->
               <div class="col-5 margin">
-                <q-toggle 
-                size="xl" 
-                v-model="gstValue" 
-                @update:model-value="val=>manipulateGst(val)" 
-                val="xl" 
+                <q-toggle
+                  size="xl"
+                  v-model="gstValue"
+                  @update:model-value="(val) => manipulateGst(val)"
+                  val="xl"
                 />
-                {{gstValue}}
+                {{ gstValue }}
                 <div v-if="gstValue">
                   <p>GST Field</p>
                   <hr />
-                  <q-input v-model="invoiceData.businessName" dense outlined label="Business Name" />
+                  <q-input
+                    v-model="invoiceData.businessName"
+                    dense
+                    outlined
+                    label="Business Name"
+                  />
                   <br />
-                  <q-input dense outlined v-model="invoiceData.Gst" label="GST" />
+                  <q-input
+                    dense
+                    outlined
+                    v-model="invoiceData.Gst"
+                    label="GST"
+                  />
                   <br />
                   <q-input
                     dense
@@ -88,16 +108,31 @@
             <hr />
             <div class="row justify-evenly">
               <div class="col-5">
-                <q-input dense v-model="invoiceData.product" outlined label="Product-name" />
+                <q-input
+                  dense
+                  v-model="invoiceData.product"
+                  outlined
+                  label="Product-name"
+                />
                 <br />
-                <q-input dense v-model="invoiceData.quantity" outlined label="Product-Quantity" />
+                <q-input
+                  dense
+                  v-model="invoiceData.quantity"
+                  outlined
+                  label="Product-Quantity"
+                />
                 <br />
-                <q-input dense v-model="invoiceData.serial" outlined label="Product-Serial" />
+                <q-input
+                  dense
+                  v-model="invoiceData.serial"
+                  outlined
+                  label="Product-Serial"
+                />
                 <br />
               </div>
               <div class="col-5">
-                <h4>Quantity : {{invoiceData.quantity}}</h4>
-                <h5>Serial : {{invoiceData.serial}}</h5>
+                <h4>Quantity : {{ invoiceData.quantity }}</h4>
+                <h5>Serial : {{ invoiceData.serial }}</h5>
               </div>
             </div>
           </div>
@@ -108,7 +143,12 @@
           <div class="col-5">
             <q-input v-model="invoiceData.price" dense outlined label="Price" />
             <br />
-            <q-input v-model="invoiceData.paymentType" dense outlined label="Payment Type" />
+            <q-input
+              v-model="invoiceData.paymentType"
+              dense
+              outlined
+              label="Payment Type"
+            />
           </div>
           <div class="col-5">
             <h5>Payment : {{ invoiceData.price }}</h5>
@@ -129,17 +169,17 @@
 
 <script>
 import { ref } from "vue";
-import Router from "../../router/index"
-import invoiceCrud from "./composables/Invoice"
+import Router from "../../router/index";
+import invoiceCrud from "./composables/Invoice";
 export default {
   name: "Invoices",
   setup() {
-    let gstValue = ref(false)
-    let testArray = ref([])
-    let date = new Date().getDate()
-    let month = new Date().getMonth()
-    let year = new Date().getFullYear()
-    const {createInvoice} = invoiceCrud()
+    let gstValue = ref(false);
+    let testArray = ref([]);
+    let date = new Date().getDate();
+    let month = new Date().getMonth();
+    let year = new Date().getFullYear();
+    const { createInvoice } = invoiceCrud();
     let invoiceData = ref({
       name: "",
       email: "",
@@ -156,29 +196,29 @@ export default {
       paymentType: "",
     });
     //functions
-    const manipulateGst = (val) =>{
-      console.log("gst value" , val)
-      invoiceData.value.gstInvoice = val
-      console.log("invoice value" , invoiceData.value.gstInvoice)
-    }
+    const manipulateGst = (val) => {
+      console.log("gst value", val);
+      invoiceData.value.gstInvoice = val;
+      console.log("invoice value", invoiceData.value.gstInvoice);
+    };
 
-    console.log("gst Type",invoiceData.value.gstInvoice)
+    console.log("gst Type", invoiceData.value.gstInvoice);
     const invoiceSubmit = () => {
-      console.log("test-Array" , testArray.value)
-      createInvoice(invoiceData.value) 
-      Router.push("/invoices")
+      console.log("test-Array", testArray.value);
+      createInvoice(invoiceData.value);
+      Router.push("/invoices");
     };
     return {
       //variables
       date,
-      month, 
+      month,
       year,
       testArray,
       invoiceData,
       gstValue,
       //functions
       invoiceSubmit,
-      manipulateGst
+      manipulateGst,
     };
   },
 };
@@ -189,7 +229,7 @@ export default {
   font-size: 2rem;
   font-weight: bolder;
 }
-.p-align-date{
+.p-align-date {
   font-size: 2rem;
   font-weight: bolder;
   color: darkcyan;
@@ -205,5 +245,4 @@ export default {
 .margin {
   margin: 2rem;
 }
-
 </style>

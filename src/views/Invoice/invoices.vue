@@ -1,8 +1,8 @@
 <template>
   <div class="q-pa-md">
     <div class="row justify-evenly">
-      <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3 ">
-        <q-input label="Search Name" outlined dense  />
+      <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3">
+        <q-input label="Search Name" outlined dense />
       </div>
       <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3 m-2">
         <q-btn-group spread>
@@ -40,7 +40,11 @@
         <br />
 
         <div class="row">
-          <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3" v-for="(item, index) in data" :key="index">
+          <div
+            class="col-xs-12 col-sm-12 col-lg-3 col-md-3"
+            v-for="(item, index) in data"
+            :key="index"
+          >
             <div v-if="Loading">
               <q-spinner color="primary" size="3em" />
             </div>
@@ -59,10 +63,10 @@
                     flat
                     icon="print"
                   />
-                  <q-btn 
-                  @click="redirectToEditInvoice(item.name)"
-                  flat 
-                  icon="edit"
+                  <q-btn
+                    @click="redirectToEditInvoice(item.name)"
+                    flat
+                    icon="edit"
                   />
                 </q-card-actions>
               </q-card>
@@ -102,9 +106,9 @@ export default {
     const redirectToIndividualInvoice = (name) => {
       router.push(`/invoice/${name}`);
     };
-    const redirectToEditInvoice = (name) =>{
-      router.push(`/invoice/${name}`)
-    }
+    const redirectToEditInvoice = (name) => {
+      router.push(`/invoice-update/${name}`);
+    };
     return {
       //variables
       data,
@@ -112,7 +116,7 @@ export default {
       //functions
       loadInvoices,
       redirectToIndividualInvoice,
-      redirectToEditInvoice
+      redirectToEditInvoice,
     };
   },
 };

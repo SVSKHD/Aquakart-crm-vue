@@ -5,9 +5,9 @@ import Layout from "../Layout/Layout";
 import Home from "../views/Home.vue";
 //invoices
 import Invoice from "../views/Invoice/Invoice";
-import Invoices from "../views/Invoice/invoices"
-import IndividualInvoice from "../views/Invoice/individualInvoice"
-import UpdateInvoice from "../views/Invoice/editInvoice"
+import Invoices from "../views/Invoice/invoices";
+import IndividualInvoice from "../views/Invoice/individualInvoice";
+import UpdateInvoice from "../views/Invoice/editInvoice";
 import Contact from "../views/users/contact";
 
 const routes = [
@@ -19,19 +19,23 @@ const routes = [
       { path: "/", name: "Home", component: Home },
       //invoices
       { path: "/invoice-create", name: "Invoice-create", component: Invoice },
-      { path:"/invoice-update" , name:"Update-Invoice" , component:UpdateInvoice},
-      { path: "/invoices" , name:"Invoices" , component:Invoices},
-      
+      {
+        path: "/invoice-update/:name",
+        name: "Update-Invoice",
+        component: UpdateInvoice,
+      },
+      { path: "/invoices", name: "Invoices", component: Invoices },
+
       //contacts
       { path: "/contacts", name: "Contacts", component: Contact },
     ],
   },
-  //indovidual Invoices 
+  //indovidual Invoices
   {
-   path:"/invoice/:name",
-   name:"InvoiceName",
-   component:IndividualInvoice
-  }
+    path: "/invoice/:name",
+    name: "InvoiceName",
+    component: IndividualInvoice,
+  },
 ];
 
 const router = createRouter({

@@ -209,7 +209,7 @@ export default {
 .head {
   background-color: #041562;
 }
-.marginalign{
+.marginalign {
   margin-bottom: 2rem;
 }
 </style>
