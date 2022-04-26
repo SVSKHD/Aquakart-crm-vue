@@ -36,6 +36,7 @@
               <div ref="content" id="content">
                 <div class="text-center">
                   <div class="text-h4">Kundana Enterprises</div>
+                  <div class="text-h6">GST : <b>36AMUPB4451C1Z7</b></div>
                   <div class="text-h6">Aquakart.co.in</div>
                   <div class="text-subtitle">{{ userData.date }}</div>
                   <div></div>
@@ -47,6 +48,10 @@
                   <div class="col-6 text-right">
                     <h5>Date : {{ userData.date }}</h5>
                   </div>
+                </div>
+                <hr />
+                <div class="text-h5">
+                  Product Serial : <b>{{ userData.serial }}</b>
                 </div>
                 <hr />
                 <div class="row justify-evenly">
@@ -81,6 +86,7 @@
                   </div>
                 </div>
                 <br />
+
                 <hr />
                 <div class="row justify-evenly">
                   <div class="col-2"><b>Product Name</b></div>
@@ -97,6 +103,7 @@
                   <div class="col-2">{{ gstValueGenerate() }} ₹ /-</div>
                   <div class="col-2">{{ userData.price }} ₹ /-</div>
                 </div>
+
                 <hr />
               </div>
             </q-card-section>
@@ -143,8 +150,10 @@ export default {
 
     const gstValueGenerate = () => {
       let price = userData.value.price;
-      let rawValue = Math.round(price * 0.18);
-      return rawValue;
+      let rawValue = price - Math.round(price * 0.18);
+      let gstPrice = Math.round(rawValue * 0.18);
+
+      return gstPrice;
     };
 
     const generatePrint = () => {
@@ -153,7 +162,6 @@ export default {
 
     const generatePdf = () => {
       //const doc = jsPDF()
-      console.log(content.value);
       window.html2canvas = html2canvas;
       let doc = new jsPDF("p", "pt", "a2");
       doc.html(document.querySelector("#content"), {
@@ -182,6 +190,7 @@ export default {
           userData.value.productname = itemData.product;
           userData.value.price = itemData.price;
           userData.value.quantity = itemData.quantity;
+          userData.value.serial = itemData.serial;
           console.log("item data", itemData);
           loading.value = false;
         });
