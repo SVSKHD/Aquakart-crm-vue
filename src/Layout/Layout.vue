@@ -2,7 +2,7 @@
   <q-layout view="hHh lpR fFf">
     <q-header elevated class="header text-white">
       <q-toolbar>
-        <q-btn to="/" icon="home" />
+        <q-btn flat to="/" icon="home" />
         <q-toolbar-title> Aquakart CRM </q-toolbar-title>
       </q-toolbar>
     </q-header>
@@ -85,6 +85,12 @@ export default {
         sub: true,
         submenu: {},
       },
+      {
+        name: "Customers",
+        icon: "",
+        sub: true,
+        submenu: { name: "Create-customer", path: "/customer-create" },
+      }
     ]);
 
     let menuList = ref([

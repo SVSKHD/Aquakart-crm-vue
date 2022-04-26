@@ -3,11 +3,11 @@
     <div class="breaker" />
     <div class="container q-pa-md">
       <div class="row justify-evenly">
-        <div class="col-5">
+        <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
           <h4>Aquakart Offline Menu</h4>
           <hr />
           <div class="row justify-evenly">
-            <div class="col-6" v-for="item in menu" :key="item">
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12" v-for="item in menu" :key="item">
               <LayoutCard
                 :name="item.name"
                 :icon="item.icon"
@@ -16,11 +16,11 @@
             </div>
           </div>
         </div>
-        <div class="col-5">
+        <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
           <h4>Aquakart Online Menu</h4>
           <hr />
           <div class="row justify-evenly">
-            <div class="col-6" v-for="item in aquaMenu" :key="item">
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12" v-for="item in aquaMenu" :key="item">
               <LayoutCard
                 :name="item.name"
                 :icon="item.icon"

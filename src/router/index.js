@@ -9,6 +9,7 @@ import Invoices from "../views/Invoice/invoices";
 import IndividualInvoice from "../views/Invoice/individualInvoice";
 import UpdateInvoice from "../views/Invoice/editInvoice";
 import Contact from "../views/users/contact";
+import contactIndividual from "../views/users/contactindividual"
 
 const routes = [
   {
@@ -28,6 +29,7 @@ const routes = [
 
       //contacts
       { path: "/contacts", name: "Contacts", component: Contact },
+      { path: "/contact/:name" , name:"Contact" , component :contactIndividual  }
     ],
   },
   //indovidual Invoices
