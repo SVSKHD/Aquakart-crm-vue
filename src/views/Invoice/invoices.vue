@@ -69,11 +69,10 @@
                     icon="edit"
                   />
                   <q-btn
-                    @click="redirectToEditInvoice(item.name)"
+                    @click="deleteInvoiceAction(item.name)"
                     flat
                     icon="delete"
                   />
-
                 </q-card-actions>
               </q-card>
             </div>
@@ -99,7 +98,7 @@ import router from "../../router";
 export default {
   setup() {
     let tab = ref("invoices");
-    const { loadInvoice } = invoiceCrud();
+    const { loadInvoice, deleteInvoice } = invoiceCrud();
     let data = ref([]);
     let Loading = ref(false);
     const loadInvoices = onBeforeMount(() => {
@@ -115,9 +114,9 @@ export default {
     const redirectToEditInvoice = (name) => {
       router.push(`/invoice-update/${name}`);
     };
-    const deleteInvoice = () =>{
-
-    }
+    const deleteInvoiceAction = (name) => {
+      deleteInvoice(name)
+    };
     return {
       //variables
       data,
@@ -126,7 +125,7 @@ export default {
       loadInvoices,
       redirectToIndividualInvoice,
       redirectToEditInvoice,
-      deleteInvoice
+      deleteInvoiceAction,
     };
   },
 };

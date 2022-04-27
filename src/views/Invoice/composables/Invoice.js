@@ -19,7 +19,7 @@ const filterInvoice = async (name) =>
   await Axios.post(`${process.env.VUE_APP_ROOT_API}/invoicefilter`, { name });
 
 const deleteInvoice = async (name) => {
-  await Axios.delete(`${process.env.VUE_APP_ROOT_API}/${name}`);
+  await Axios.delete(`${process.env.VUE_APP_ROOT_API}/invoice/${name}`);
 };
 
 const invoiceCrud = () => {
