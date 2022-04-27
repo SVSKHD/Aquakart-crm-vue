@@ -3,10 +3,6 @@
     <q-toolbar class="head text-white q-my-md shadow-2">
       <q-btn stretch flat icon="home" to="/invoices" />
       <q-space />
-      <q-separator dark vertical />
-      <q-btn stretch flat label="Print" />
-      <q-separator dark vertical />
-      <q-btn stretch flat label="Download" />
     </q-toolbar>
 
     <div class="q-pa-md">
@@ -34,6 +30,11 @@
           <q-card>
             <q-card-section>
               <div ref="content" id="content">
+                <img
+                  :src="require('../../assets/Default.png')"
+                  :ratio="1"
+                  class="imagealign"
+                />
                 <div class="text-center">
                   <div class="text-h4">Kundana Enterprises</div>
                   <div class="text-h6">GST : <b>36AMUPB4451C1Z7</b></div>
@@ -48,10 +49,6 @@
                   <div class="col-6 text-right">
                     <h5>Date : {{ userData.date }}</h5>
                   </div>
-                </div>
-                <hr />
-                <div class="text-h5">
-                  Product Serial : <b>{{ userData.serial }}</b>
                 </div>
                 <hr />
                 <div class="row justify-evenly">
@@ -86,7 +83,10 @@
                   </div>
                 </div>
                 <br />
-
+                <hr />
+                <div class="text-h5">
+                  Product Serial : <b>{{ userData.serial }}</b>
+                </div>
                 <hr />
                 <div class="row justify-evenly">
                   <div class="col-2"><b>Product Name</b></div>
@@ -215,6 +215,10 @@ export default {
 </script>
 
 <style>
+.imagealign {
+  height: 100px;
+  width: 100px;
+}
 .head {
   background-color: #041562;
 }

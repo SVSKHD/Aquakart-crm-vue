@@ -16,39 +16,38 @@
         </q-btn-group>
       </div>
     </div>
+
     <br />
 
-    <q-tabs
-      v-model="tab"
-      dense
-      class="head text-grey"
-      active-color="white"
-      indicator-color="primary"
-      align="justify"
-      narrow-indicator
-    >
-      <q-tab name="invoices" label="Invoices" />
-      <q-tab name="gst-invoices" label="GST Invoices" />
-    </q-tabs>
+    <div class="text-center" v-if="Loading">
+      <q-spinner color="primary" size="3em" />
+    </div>
+    <div v-else>
+      <q-tabs
+        v-model="tab"
+        dense
+        class="head text-grey"
+        active-color="white"
+        indicator-color="primary"
+        align="justify"
+        narrow-indicator
+      >
+        <q-tab name="invoices" label="Invoices" />
+        <q-tab name="gst-invoices" label="GST Invoices" />
+      </q-tabs>
+      <q-separator />
+      <q-tab-panels v-model="tab" animated>
+        <q-tab-panel name="invoices">
+          <div class="text-h6">Invoices</div>
+          <q-input label="Search Name" outlined dense />
+          <br />
 
-    <q-separator />
-
-    <q-tab-panels v-model="tab" animated>
-      <q-tab-panel name="invoices">
-        <div class="text-h6">Invoices</div>
-        <q-input label="Search Name" outlined dense />
-        <br />
-
-        <div class="row">
-          <div
-            class="col-xs-12 col-sm-12 col-lg-3 col-md-3"
-            v-for="(item, index) in data"
-            :key="index"
-          >
-            <div v-if="Loading">
-              <q-spinner color="primary" size="3em" />
-            </div>
-            <div v-else>
+          <div class="row">
+            <div
+              class="col-xs-12 col-sm-12 col-lg-3 col-md-3"
+              v-for="(item, index) in data"
+              :key="index"
+            >
               <q-card class="margin">
                 <q-card-section>
                   <div class="text-h6">{{ item.name }}</div>
@@ -77,15 +76,14 @@
               </q-card>
             </div>
           </div>
-        </div>
-      </q-tab-panel>
+        </q-tab-panel>
 
-      <q-tab-panel name="gst-invoices">
-        <div class="text-h6">GST-Invoices</div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      </q-tab-panel>
-    </q-tab-panels>
-
+        <q-tab-panel name="gst-invoices">
+          <div class="text-h6">GST-Invoices</div>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </q-tab-panel>
+      </q-tab-panels>
+    </div>
     <!-- tabs end -->
   </div>
 </template>
@@ -100,14 +98,16 @@ export default {
     let tab = ref("invoices");
     const { loadInvoice, deleteInvoice } = invoiceCrud();
     let data = ref([]);
-    let Loading = ref(false);
+    let Loading = ref(true);
+
     const loadInvoices = onBeforeMount(() => {
-      Loading.value = true;
       loadInvoice().then((invoicedata) => {
+        Loading.value = true;
         data.value = invoicedata.data;
         Loading.value = false;
       });
     });
+    
     const redirectToIndividualInvoice = (name) => {
       router.push(`/invoice/${name}`);
     };
@@ -115,7 +115,7 @@ export default {
       router.push(`/invoice-update/${name}`);
     };
     const deleteInvoiceAction = (name) => {
-      deleteInvoice(name)
+      deleteInvoice(name);
     };
     return {
       //variables
