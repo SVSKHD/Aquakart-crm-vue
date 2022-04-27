@@ -117,7 +117,7 @@
               <div class="col-5">
                 <q-input
                   dense
-                  v-model="updateData.productname"
+                  v-model="updateData.product"
                   outlined
                   label="Product-name"
                 />
@@ -156,7 +156,7 @@
                 />
                 <br />
                 <q-input
-                  v-model="updateData.paymenttype"
+                  v-model="updateData.paymentType"
                   dense
                   outlined
                   label="Payment Type"
@@ -164,7 +164,7 @@
               </div>
               <div class="col-5">
                 <h5>Payment : {{ updateData.price }}</h5>
-                <h6>Payment Type : {{ updateData.paymenttype }}</h6>
+                <h6>Payment Type : {{ updateData.paymentType }}</h6>
               </div>
             </div>
           </div>
@@ -199,11 +199,11 @@ export default {
       email: "",
       phone: "",
       address: "",
-      productname: "",
+      product: "",
       quantity: "",
       serial: "",
       price: "",
-      paymenttype: "",
+      paymentType: "",
       gst: "",
       gstNo: "",
       gstAddress: "",
@@ -216,6 +216,7 @@ export default {
       updateInvoiceData(match, updateData.value).then(() => {
         submit.value = true;
       });
+      route.push("/invoices")
     };
 
     const manipulateGst = (val) => {
@@ -237,11 +238,11 @@ export default {
           updateData.value.gstNo = info.GST;
           updateData.value.gstAddress = info.businessAddress;
           updateData.value.gstPhone = info.phone;
-          updateData.value.productname = info.product;
+          updateData.value.product = info.product;
           updateData.value.quantity = info.quantity;
           updateData.value.price = info.price;
           updateData.value.serial = info.serial;
-          updateData.value.paymenttype = info.paymentType;
+          updateData.value.paymentType = info.paymentType;
         })
         .then(() => {
           Loading.value = false;

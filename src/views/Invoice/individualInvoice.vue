@@ -78,7 +78,7 @@
                       </div>
                     </div>
                     <div v-else>
-                      <div class="text-h6">No GST Input Given</div>
+                      <div class="text-h6">No GST Account details given</div>
                     </div>
                   </div>
                 </div>

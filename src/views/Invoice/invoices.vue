@@ -80,7 +80,6 @@
 
         <q-tab-panel name="gst-invoices">
           <div class="text-h6">GST-Invoices</div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
         </q-tab-panel>
       </q-tab-panels>
     </div>
