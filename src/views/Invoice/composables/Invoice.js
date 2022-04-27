@@ -1,8 +1,8 @@
 import Axios from "axios";
 
-const createInvoice = async (data) => {
-  await Axios.post(`${process.env.VUE_APP_ROOT_API}/invoice`, data);
-};
+const createInvoices = async (data) =>  
+  await Axios.post(`https://aquakart.co.in/crm/invoice`, data);
+
 
 const loadInvoice = async () =>
   await Axios.get(`${process.env.VUE_APP_ROOT_API}/invoiceload`);
@@ -24,7 +24,7 @@ const deleteInvoice = async (name) => {
 
 const invoiceCrud = () => {
   return {
-    createInvoice,
+    createInvoices,
     loadInvoice,
     filterInvoice,
     updateInvoice,

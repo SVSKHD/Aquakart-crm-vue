@@ -68,6 +68,12 @@
                     flat
                     icon="edit"
                   />
+                  <q-btn
+                    @click="redirectToEditInvoice(item.name)"
+                    flat
+                    icon="delete"
+                  />
+
                 </q-card-actions>
               </q-card>
             </div>
@@ -109,6 +115,9 @@ export default {
     const redirectToEditInvoice = (name) => {
       router.push(`/invoice-update/${name}`);
     };
+    const deleteInvoice = () =>{
+
+    }
     return {
       //variables
       data,
@@ -117,6 +126,7 @@ export default {
       loadInvoices,
       redirectToIndividualInvoice,
       redirectToEditInvoice,
+      deleteInvoice
     };
   },
 };
