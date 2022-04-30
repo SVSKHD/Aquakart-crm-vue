@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 const createInvoices = async (data) =>  
-  await Axios.post(`https://aquakart.co.in/crm/invoice`, data);
+  await Axios.post(`${process.env.VUE_APP_ROOT_API}/invoice`, data);
 
 
 const loadInvoice = async () =>

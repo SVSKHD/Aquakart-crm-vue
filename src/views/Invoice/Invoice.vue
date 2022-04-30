@@ -184,7 +184,7 @@ export default {
     let gstValue = ref(false);
     let testArray = ref([]);
     let date = new Date().getDate();
-    let month = new Date().getMonth();
+    let month = new Date().getMonth() + 1;
     let year = new Date().getFullYear();
     const {createInvoices} = invoiceCrud()
     // let invoiceData = ref({
@@ -209,7 +209,7 @@ export default {
       phone: "",
       address: "",
       product: "",
-      paymentType: "cash",
+      paymentType: "",
       gstInvoice: gstValue.value,
       Gst: "",
       businessName: "",

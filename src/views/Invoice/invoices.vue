@@ -20,10 +20,13 @@
     <br />
 
     <div class="text-center" v-if="Loading">
-      <q-spinner color="primary" size="3em" />
+      <q-spinner
+        color="primary"
+        size="3em"
+      />
     </div>
     <div v-else>
-      <q-tabs
+       <q-tabs
         v-model="tab"
         dense
         class="head text-grey"
@@ -81,7 +84,7 @@
         <q-tab-panel name="gst-invoices">
           <div class="text-h6">GST-Invoices</div>
         </q-tab-panel>
-      </q-tab-panels>
+      </q-tab-panels> 
     </div>
     <!-- tabs end -->
   </div>
@@ -97,7 +100,7 @@ export default {
     let tab = ref("invoices");
     const { loadInvoice, deleteInvoice } = invoiceCrud();
     let data = ref([]);
-    let Loading = ref(true);
+    let Loading = ref(false);
 
     const loadInvoices = onBeforeMount(() => {
       loadInvoice().then((invoicedata) => {
@@ -114,12 +117,17 @@ export default {
       router.push(`/invoice-update/${name}`);
     };
     const deleteInvoiceAction = (name) => {
-      deleteInvoice(name);
+      deleteInvoice(name).then(()=>{
+        Loading.value = true
+        loadInvoices()
+        Loading.value = false
+      })
     };
     return {
       //variables
       data,
       tab,
+      Loading,
       //functions
       loadInvoices,
       redirectToIndividualInvoice,
