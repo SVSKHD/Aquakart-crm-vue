@@ -7,7 +7,7 @@
           <h4>Aquakart Offline Menu</h4>
           <hr />
           <div class="row justify-evenly">
-            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12" v-for="item in menu" :key="item">
+            <div class="col-md-6 col-lg-4 col-sm-12 col-xs-12" v-for="item in menu" :key="item">
               <LayoutCard
                 :name="item.name"
                 :icon="item.icon"
@@ -20,7 +20,7 @@
           <h4>Aquakart Online Menu</h4>
           <hr />
           <div class="row justify-evenly">
-            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12" v-for="item in aquaMenu" :key="item">
+            <div class="col-md-6 col-lg-4 col-sm-12 col-xs-12" v-for="item in aquaMenu" :key="item">
               <LayoutCard
                 :name="item.name"
                 :icon="item.icon"
@@ -49,7 +49,7 @@ export default {
       { name: "Quotations", path: "/quotations", icon: "pages" },
     ]);
     let aquaMenu = ref([
-      { name: "Blog", path: "/blog", icon: "date_range" },
+      { name: "Blog", path: "/blogs", icon: "date_range" },
       { name: "Products", path: "/products", icon: "person" },
       { name: "Categories", path: "/categories", icon: "Categories" },
       {

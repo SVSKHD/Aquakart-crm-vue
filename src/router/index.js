@@ -10,6 +10,9 @@ import IndividualInvoice from "../views/Invoice/individualInvoice";
 import UpdateInvoice from "../views/Invoice/editInvoice";
 import Contact from "../views/users/contact";
 import contactIndividual from "../views/users/contactindividual"
+//Aqua 
+import Blogs from "../views/Aqua/Blog/Blog"
+
 
 const routes = [
   {
@@ -26,7 +29,8 @@ const routes = [
         component: UpdateInvoice,
       },
       { path: "/invoices", name: "Invoices", component: Invoices },
-
+      //Aquamenu-
+      { path : "/blogs", name: "Blogs" , component : Blogs},
       //contacts
       { path: "/contacts", name: "Contacts", component: Contact },
       { path: "/contact/:name" , name:"Contact" , component :contactIndividual  }
