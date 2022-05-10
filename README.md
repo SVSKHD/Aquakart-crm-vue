@@ -6,6 +6,12 @@
 npm install
 ```
 
+## Project pretty run 
+
+```
+npm run pretty
+```
+
 ### Compiles and hot-reloads for development
 
 ```

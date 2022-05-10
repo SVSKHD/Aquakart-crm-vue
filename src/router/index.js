@@ -12,15 +12,23 @@ import Contact from "../views/users/contact";
 import contactIndividual from "../views/users/contactindividual"
 //Aqua 
 import Blogs from "../views/Aqua/Blog/Blog"
+//categories
+import Categories from "../views/Aqua/categories/categories"
+//products
+import Products from "../views/Aqua/products/products"
+//sub-categories
+import SubCate from "../views/Aqua/subcategories/sub-categories"
 
-
+//Auth
+import AuthScreen from "../views/Auth/AuthScreen"
 const routes = [
+  {path:"/" , name:"Aquakart Auth" , component:AuthScreen},
   {
     path: "/layout",
     name: "Layout",
     component: Layout,
     children: [
-      { path: "/", name: "Home", component: Home },
+      { path: "/home", name: "Home", component: Home },
       //invoices
       { path: "/invoice-create", name: "Invoice-create", component: Invoice },
       {
@@ -29,11 +37,19 @@ const routes = [
         component: UpdateInvoice,
       },
       { path: "/invoices", name: "Invoices", component: Invoices },
-      //Aquamenu-
-      { path : "/blogs", name: "Blogs" , component : Blogs},
+     
       //contacts
       { path: "/contacts", name: "Contacts", component: Contact },
-      { path: "/contact/:name" , name:"Contact" , component :contactIndividual  }
+      { path: "/contact/:name" , name:"Contact" , component :contactIndividual  },
+      //Aquamenu-
+      { path : "/blogs", name: "Blogs" , component : Blogs},
+      //categories
+      {path : "/categories" , name: "Categories" , component:Categories},
+       //subcategories
+       {path:"/sub-categories" , name:"Sub-Categories" , component:SubCate},
+      //products
+      {path:"/products" , name:"Products" , component:Products},
+     
     ],
   },
   //indovidual Invoices

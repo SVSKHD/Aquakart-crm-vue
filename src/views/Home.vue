@@ -47,6 +47,7 @@ export default {
       { name: "Customers", path: "/customers", icon: "person" },
       { name: "Contacts", path: "/contacts", icon: "person" },
       { name: "Quotations", path: "/quotations", icon: "pages" },
+      { name: "Follow up" , path:"/follow-up" , icon:"people"}
     ]);
     let aquaMenu = ref([
       { name: "Blog", path: "/blogs", icon: "date_range" },
@@ -62,6 +63,21 @@ export default {
         path: "/review",
         icon: "pages",
       },
+      {
+        name:"Payments",
+        path:"/payments",
+        icon:"money"
+      },
+      {
+        name:"Orders",
+        path:"/orders",
+        icon:"shopping_bag"
+      },
+      {
+        name:"Contact Form",
+        path:"/contactforum",
+        icon:"people"
+      }
     ]);
     return {
       //  variables

@@ -2,7 +2,7 @@
   <q-layout view="hHh lpR fFf">
     <q-header elevated class="header text-white">
       <q-toolbar>
-        <q-btn flat to="/" icon="home" />
+        <q-btn flat to="/home" icon="home" />
         <q-toolbar-title> Aquakart CRM </q-toolbar-title>
       </q-toolbar>
     </q-header>
@@ -57,7 +57,7 @@
     <q-footer elevated class="header text-white">
       <q-bar>
         <q-toolbar-title>
-          <div>Aquakart CRM | Offline Sales CRM</div>
+          <div>Aquakart CRM | Offline Sales & Online Sales CRM</div>
         </q-toolbar-title>
       </q-bar>
     </q-footer>
