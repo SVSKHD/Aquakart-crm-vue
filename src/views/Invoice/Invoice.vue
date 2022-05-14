@@ -177,7 +177,7 @@
 <script>
 import { ref } from "vue";
 import Router from "../../router/index";
-import invoiceCrud from "./composables/Invoice"
+import invoiceCrud from "./composables/Invoice";
 export default {
   name: "Invoices",
   setup() {
@@ -186,22 +186,7 @@ export default {
     let date = new Date().getDate();
     let month = new Date().getMonth() + 1;
     let year = new Date().getFullYear();
-    const {createInvoices} = invoiceCrud()
-    // let invoiceData = ref({
-    //   name: "",
-    //   email: "",
-    //   phone: "",
-    //   address: "",
-    //   gstInvoice: gstValue.value,
-    //   Gst: "",
-    //   businessName: "",
-    //   businessAddress: "",
-    //   product: "",
-    //   serial: "",
-    //   quantity: "",
-    //   price: "",
-    //   paymentType: "",
-    // });
+    const { createInvoices } = invoiceCrud();
 
     let invoiceData = ref({
       name: "",
@@ -217,7 +202,7 @@ export default {
       Type: "",
       serial: "",
       price: "",
-      quantity:"" ,
+      quantity: "",
       aquakartuser: "",
     });
     //functions
@@ -227,9 +212,9 @@ export default {
     };
 
     const invoiceSubmit = () => {
-      console.log("test-Array", invoiceData.value);
-      createInvoices(invoiceData.value)
-      Router.push("/invoices");
+      createInvoices(invoiceData.value).then(() => {
+        Router.push("/invoices");
+      });
     };
     return {
       //variables

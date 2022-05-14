@@ -2,7 +2,7 @@
   <div class="q-pa-md">
     <div class="row justify-evenly">
       <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3">
-        <q-input label="Search Name" outlined dense />
+        <q-input label="Search Invoice" outlined dense />
       </div>
       <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3 m-2">
         <q-btn-group spread>
@@ -20,13 +20,10 @@
     <br />
 
     <div class="text-center" v-if="Loading">
-      <q-spinner
-        color="primary"
-        size="3em"
-      />
+      <q-spinner color="primary" size="3em" />
     </div>
     <div v-else>
-       <q-tabs
+      <q-tabs
         v-model="tab"
         dense
         class="head text-grey"
@@ -84,7 +81,7 @@
         <q-tab-panel name="gst-invoices">
           <div class="text-h6">GST-Invoices</div>
         </q-tab-panel>
-      </q-tab-panels> 
+      </q-tab-panels>
     </div>
     <!-- tabs end -->
   </div>
@@ -109,7 +106,7 @@ export default {
         Loading.value = false;
       });
     });
-    
+
     const redirectToIndividualInvoice = (name) => {
       router.push(`/invoice/${name}`);
     };
@@ -117,11 +114,11 @@ export default {
       router.push(`/invoice-update/${name}`);
     };
     const deleteInvoiceAction = (name) => {
-      deleteInvoice(name).then(()=>{
-        Loading.value = true
-        loadInvoices()
-        Loading.value = false
-      })
+      deleteInvoice(name).then(() => {
+        Loading.value = true;
+        loadInvoices();
+        Loading.value = false;
+      });
     };
     return {
       //variables

@@ -5,7 +5,7 @@
         <q-card>
           <div class="q-pa-md">
             <form @submit.prevent="blogSubmit">
-                <q-btn @click="Api"/>
+              <q-btn @click="Api" />
               <q-input outlined dense label="title" />
             </form>
           </div>
@@ -13,10 +13,8 @@
       </div>
     </div>
     <div class="col-md-6 col-lg-4 col-sm-12 col-xs-12">
-      <div class="q-pa-md">    
-        <q-card>
-           
-        </q-card>
+      <div class="q-pa-md">
+        <q-card> </q-card>
       </div>
     </div>
   </div>
@@ -26,17 +24,17 @@
 export default {
   name: "Blogs",
   setup() {
-      let Apivalue = process.env.VUE_APP_ROOT_API_AQUA
-      const Api = () =>{
-        console.log("API" , process.env.VUE_APP_ROOT_API_AQUA)
-      }
-      
-      return{
-//variables
-Apivalue,
-//functions
-Api
-      }
+    let Apivalue = process.env.VUE_APP_ROOT_API_AQUA;
+    const Api = () => {
+      console.log("API", process.env.VUE_APP_ROOT_API_AQUA);
+    };
+
+    return {
+      //variables
+      Apivalue,
+      //functions
+      Api,
+    };
   },
 };
 </script>

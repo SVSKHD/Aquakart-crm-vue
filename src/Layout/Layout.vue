@@ -90,7 +90,7 @@ export default {
         icon: "",
         sub: true,
         submenu: { name: "Create-customer", path: "/customer-create" },
-      }
+      },
     ]);
 
     let menuList = ref([

@@ -7,11 +7,9 @@
       <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
         <q-card class="header">
           <q-card-section class="header">
-            <div
-              class=" row justify-center items-center"
-            >
+            <div class="row justify-center items-center">
               <div class="column">
-                <div class="align"/>
+                <div class="align" />
                 <div class="row">
                   <q-card square bordered class="q-pa-lg shadow-1">
                     <q-card-section>
@@ -50,7 +48,7 @@
                     </q-card-section>
                   </q-card>
                 </div>
-                <div class="align"/>
+                <div class="align" />
               </div>
             </div>
           </q-card-section>
@@ -82,8 +80,7 @@ export default {
 .toolbar {
   background-color: #11468f;
 }
-.align{
-    margin-bottom: 25rem;
+.align {
+  margin-bottom: 25rem;
 }
-
 </style>

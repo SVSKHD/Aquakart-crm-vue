@@ -6,7 +6,7 @@
 npm install
 ```
 
-## Project pretty run 
+## Project pretty run
 
 ```
 npm run pretty

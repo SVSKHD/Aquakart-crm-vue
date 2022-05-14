@@ -212,11 +212,11 @@ export default {
     });
     const { updateInvoice, updateInvoiceData } = invoiceCrud();
     const handleSubmit = () => {
-        console.log("updatedata",updateData.value)
+      console.log("updatedata", updateData.value);
       updateInvoiceData(match, updateData.value).then(() => {
         submit.value = true;
       });
-      route.push("/invoices")
+      route.push("/invoices");
     };
 
     const manipulateGst = (val) => {

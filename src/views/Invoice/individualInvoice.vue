@@ -191,12 +191,11 @@ export default {
           userData.value.price = itemData.price;
           userData.value.quantity = itemData.quantity;
           userData.value.serial = itemData.serial;
-          console.log("item data", itemData);
           loading.value = false;
         });
       });
     });
-    console.log("userData", userData.value);
+    
     return {
       //variables
       gst,

@@ -7,7 +7,11 @@
           <h4>Aquakart Offline Menu</h4>
           <hr />
           <div class="row justify-evenly">
-            <div class="col-md-6 col-lg-4 col-sm-12 col-xs-12" v-for="item in menu" :key="item">
+            <div
+              class="col-md-6 col-lg-4 col-sm-12 col-xs-12"
+              v-for="item in menu"
+              :key="item"
+            >
               <LayoutCard
                 :name="item.name"
                 :icon="item.icon"
@@ -20,7 +24,11 @@
           <h4>Aquakart Online Menu</h4>
           <hr />
           <div class="row justify-evenly">
-            <div class="col-md-6 col-lg-4 col-sm-12 col-xs-12" v-for="item in aquaMenu" :key="item">
+            <div
+              class="col-md-6 col-lg-4 col-sm-12 col-xs-12"
+              v-for="item in aquaMenu"
+              :key="item"
+            >
               <LayoutCard
                 :name="item.name"
                 :icon="item.icon"
@@ -47,7 +55,7 @@ export default {
       { name: "Customers", path: "/customers", icon: "person" },
       { name: "Contacts", path: "/contacts", icon: "person" },
       { name: "Quotations", path: "/quotations", icon: "pages" },
-      { name: "Follow up" , path:"/follow-up" , icon:"people"}
+      { name: "Follow up", path: "/follow-up", icon: "people" },
     ]);
     let aquaMenu = ref([
       { name: "Blog", path: "/blogs", icon: "date_range" },
@@ -64,20 +72,20 @@ export default {
         icon: "pages",
       },
       {
-        name:"Payments",
-        path:"/payments",
-        icon:"money"
+        name: "Payments",
+        path: "/payments",
+        icon: "money",
       },
       {
-        name:"Orders",
-        path:"/orders",
-        icon:"shopping_bag"
+        name: "Orders",
+        path: "/orders",
+        icon: "shopping_bag",
       },
       {
-        name:"Contact Form",
-        path:"/contactforum",
-        icon:"people"
-      }
+        name: "Contact Form",
+        path: "/contactforum",
+        icon: "people",
+      },
     ]);
     return {
       //  variables
