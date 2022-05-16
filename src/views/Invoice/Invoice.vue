@@ -178,6 +178,7 @@
 import { ref } from "vue";
 import Router from "../../router/index";
 import invoiceCrud from "./composables/Invoice";
+//import Axios from "axios"
 export default {
   name: "Invoices",
   setup() {
@@ -211,10 +212,10 @@ export default {
       invoiceData.value.gstInvoice = val;
     };
 
+    
     const invoiceSubmit = () => {
-      createInvoices(invoiceData.value).then(() => {
-        Router.push("/invoices");
-      });
+      createInvoices(invoiceData.value)
+      Router.push("/invoices")
     };
     return {
       //variables

@@ -195,7 +195,7 @@ export default {
         });
       });
     });
-    
+
     return {
       //variables
       gst,
@@ -203,8 +203,8 @@ export default {
       data,
       content,
       userData,
+       loadIndividualInvoice,
       //functions
-      loadIndividualInvoice,
       gstValueGenerate,
       generatePrint,
       generatePdf,
