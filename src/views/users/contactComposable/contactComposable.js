@@ -6,8 +6,11 @@ const getContacts = async () =>
 const createContactAPI = async (data) =>
   await Axios.post(`${process.env.VUE_APP_ROOT_API}/contact`, data);
 
+const deleteContact = async (name) =>
+  await Axios.delete(`${process.env.VUE_APP_ROOT_API}/contactdelete/${name}`);
+
 const useContact = () => {
-  return { getContacts, createContactAPI };
+  return { getContacts, createContactAPI, deleteContact };
 };
 
 export default useContact;

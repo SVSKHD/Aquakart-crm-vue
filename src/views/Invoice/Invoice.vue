@@ -8,32 +8,22 @@
       <form @submit.prevent="invoiceSubmit">
         <q-card-section>
           <!-- //date and invoice section -->
-          <div class="row justify-evenly">
-            <div class="col-6">
-              <div class="row justify-content-evenly">
-                <div class="col-4"><p class="p-align">Date :</p></div>
-                <div class="col-4">
-                  <div class="align">
-                    <p class="p-align-date">
-                      {{ `${date} -  ${month} - ${year}` }}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-6">
-              <div />
-            </div>
-          </div>
+          
+            
+
+            <div class="text-center"> <p class="p-align-date">
+                      <b>DATE</b> : {{ `${date} -  ${month} - ${year}` }}
+                    </p></div>
+          
 
           <!-- customer details and if gst details -->
           <div class="row justify-evenly">
-            <div class="col-5">
+            <div class="col-5 col-md-5 col-xs-12 col-sm-12">
               <h6 class="customerhead">Customer Details</h6>
               <hr />
               <div class="row">
                 <!-- customer details -->
-                <div class="col-5 margin">
+                <div class="col-5 col-md-5 col-xs-12 col-sm-12">
                   <q-input
                     v-model="invoiceData.name"
                     dense
@@ -64,7 +54,7 @@
                   />
                 </div>
                 <!-- gst details -->
-                <div class="col-5 margin">
+                <div class="col-5 col-md-5 col-xs-12 col-sm-12">
                   <q-toggle
                     size="xl"
                     v-model="gstValue"
@@ -104,11 +94,15 @@
               </div>
             </div>
             <!-- product details -->
-            <div class="col-5">
+            <div class="col-5 col-md-5 col-xs-12 col-sm-12">
               <h6 class="customerhead">Product Details</h6>
               <hr />
               <div class="row justify-evenly">
-                <div class="col-5">
+                <div class="col-5 col-md-5 col-xs-12 col-sm-12">
+                  <h4>Quantity : {{ invoiceData.quantity }}</h4>
+                  <h5>Serial : {{ invoiceData.serial }}</h5>
+                </div>
+                <div class="col-5 col-md-5 col-xs-12 col-sm-12">
                   <q-input
                     dense
                     v-model="invoiceData.product"
@@ -131,17 +125,16 @@
                   />
                   <br />
                 </div>
-                <div class="col-5">
-                  <h4>Quantity : {{ invoiceData.quantity }}</h4>
-                  <h5>Serial : {{ invoiceData.serial }}</h5>
-                </div>
+                
               </div>
             </div>
           </div>
           <hr />
+          <br/>
+          <div class="text-h6">Payment Details</div>
           <!-- //product price details -->
           <div class="row justify-evenly">
-            <div class="col-5">
+            <div class="col-5 col-md-5 col-xs-12 col-sm-12">
               <q-input
                 v-model="invoiceData.price"
                 dense
@@ -156,7 +149,7 @@
                 label="Payment Type"
               />
             </div>
-            <div class="col-5">
+            <div class="col-5 col-md-5 col-xs-12 col-sm-12">
               <h5>Payment : {{ invoiceData.price }}</h5>
               <h6>Payment Type : {{ invoiceData.paymentType }}</h6>
             </div>

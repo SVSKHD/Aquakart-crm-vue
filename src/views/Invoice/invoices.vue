@@ -76,6 +76,15 @@
               </q-card>
             </div>
           </div>
+
+          <q-table
+      title="Invoices"
+      :rows="rows"
+      :columns="columns"
+      row-key="name"
+      dark
+      color="amber"
+    />
         </q-tab-panel>
 
         <q-tab-panel name="gst-invoices">
