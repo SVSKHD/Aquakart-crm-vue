@@ -203,7 +203,7 @@ export default {
       data,
       content,
       userData,
-       loadIndividualInvoice,
+      loadIndividualInvoice,
       //functions
       gstValueGenerate,
       generatePrint,

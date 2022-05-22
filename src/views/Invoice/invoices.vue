@@ -1,22 +1,14 @@
 <template>
   <div class="q-pa-md">
-    <div class="row justify-evenly">
-      <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3">
-        <q-input label="Search Invoice" outlined dense />
-      </div>
-      <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3 m-2">
-        <q-btn-group spread>
-          <q-btn
-            dense
-            style="background: #041562; color: white"
-            to="/invoice-create"
-            label="Create Invoice"
-            icon="timeline"
-          />
-        </q-btn-group>
-      </div>
+    <div>
+      <q-btn
+        dense
+        style="background: #041562; color: white"
+        to="/invoice-create"
+        label="Create Invoice"
+        icon="timeline"
+      />
     </div>
-
     <br />
 
     <div class="text-center" v-if="Loading">
@@ -39,56 +31,105 @@
       <q-tab-panels v-model="tab" animated>
         <q-tab-panel name="invoices">
           <div class="text-h6">Invoices</div>
-          <q-input label="Search Name" outlined dense />
           <br />
-
-          <div class="row">
-            <div
-              class="col-xs-12 col-sm-12 col-lg-3 col-md-3"
-              v-for="(item, index) in data"
-              :key="index"
-            >
-              <q-card class="margin">
-                <q-card-section>
-                  <div class="text-h6">{{ item.name }}</div>
-                  <div class="text-subtitle2">{{ item.phone }}</div>
-                </q-card-section>
-
-                <q-separator dark inset />
-
-                <q-card-actions>
+          <q-table
+            title="Invoices"
+            :rows="rows"
+            :columns="columns"
+            row-key="name"
+            dark
+            color="amber"
+            separator="separator"
+            :filter="filter"
+            :loading="loading"
+          >
+            <template #body-cell-name="props">
+              <q-td :props="props">
+                <q-btn-group flat>
                   <q-btn
-                    @click="redirectToIndividualInvoice(item.name)"
                     flat
+                    @click="redirectToIndividualInvoice(props.value)"
                     icon="print"
                   />
                   <q-btn
-                    @click="redirectToEditInvoice(item.name)"
                     flat
+                    @click="redirectToEditInvoice(props.value)"
                     icon="edit"
                   />
                   <q-btn
-                    @click="deleteInvoiceAction(item.name)"
                     flat
+                    @click="deleteInvoiceAction(props.value)"
                     icon="delete"
+                    :label="props.value"
                   />
-                </q-card-actions>
-              </q-card>
-            </div>
-          </div>
-
-          <q-table
-      title="Invoices"
-      :rows="rows"
-      :columns="columns"
-      row-key="name"
-      dark
-      color="amber"
-    />
+                </q-btn-group>
+              </q-td>
+            </template>
+            <template v-slot:top-right>
+              <q-input
+                bg-color="white"
+                dense
+                outlined
+                v-model="filter"
+                label="Search by Name"
+              >
+                <template v-slot:append>
+                  <q-icon name="search" />
+                </template>
+              </q-input>
+            </template>
+          </q-table>
         </q-tab-panel>
 
         <q-tab-panel name="gst-invoices">
           <div class="text-h6">GST-Invoices</div>
+           <q-table
+            title="Invoices"
+            :rows="gstrows"
+            :columns="gstcolumns"
+            row-key="name"
+            dark
+            color="amber"
+            separator="separator"
+            :filter="filter"
+            :loading="loading"
+          >
+            <template #body-cell-name="props">
+              <q-td :props="props">
+                <q-btn-group flat>
+                  <q-btn
+                    flat
+                    @click="redirectToIndividualInvoice(props.value)"
+                    icon="print"
+                  />
+                  <q-btn
+                    flat
+                    @click="redirectToEditInvoice(props.value)"
+                    icon="edit"
+                  />
+                  <q-btn
+                    flat
+                    @click="deleteInvoiceAction(props.value)"
+                    icon="delete"
+                    :label="props.value"
+                  />
+                </q-btn-group>
+              </q-td>
+            </template>
+            <template v-slot:top-right>
+              <q-input
+                bg-color="white"
+                dense
+                outlined
+                v-model="filter"
+                label="Search by Name"
+              >
+                <template v-slot:append>
+                  <q-icon name="search" />
+                </template>
+              </q-input>
+            </template>
+          </q-table>
         </q-tab-panel>
       </q-tab-panels>
     </div>
@@ -104,14 +145,94 @@ import router from "../../router";
 export default {
   setup() {
     let tab = ref("invoices");
-    const { loadInvoice, deleteInvoice } = invoiceCrud();
+    const { loadInvoice, loadgstInvoice ,deleteInvoice } = invoiceCrud();
     let data = ref([]);
+    let separator = ref("vertical");
+    let filter = ref("");
     let Loading = ref(false);
+
+    const columns = ref([
+      {
+        name: "name",
+        required: true,
+        label: "Customer-Name",
+        align: "left",
+        field: (row) => row.name,
+        format: (val) => `${val}`,
+        sortable: true,
+      },
+      { name: "protein", label: "Phone", field: "phone" },
+      { name: "sodium", label: "Email", field: "email" },
+      {
+        name: "Price",
+        align: "center",
+        label: "Product",
+        field: "product",
+        sortable: true,
+      },
+      { name: "carbs", label: "Price", field: "price" },
+      {
+        name: "calcium",
+        label: "Quantity",
+        field: "quantity",
+        sortable: true,
+        sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
+      },
+      {
+        name: "iron",
+        label: "Serial",
+        field: "serial",
+        sortable: true,
+        sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
+      },
+    ]);
+
+    const rows = ref([]);
+
+     const gstcolumns = ref([
+      {
+        name: "name",
+        required: true,
+        label: "Customer-Name",
+        align: "left",
+        field: (row) => row.name,
+        format: (val) => `${val}`,
+        sortable: true,
+      },
+      { name: "protein", label: "Phone", field: "phone" },
+      { name: "sodium", label: "Email", field: "email" },
+      {
+        name: "Price",
+        align: "center",
+        label: "Product",
+        field: "product",
+        sortable: true,
+      },
+      { name: "carbs", label: "Price", field: "price" },
+      {
+        name: "calcium",
+        label: "Quantity",
+        field: "quantity",
+        sortable: true,
+        sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
+      },
+      {
+        name: "iron",
+        label: "Serial",
+        field: "serial",
+        sortable: true,
+        sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
+      },
+    ]);
+
+    const gstrows = ref([]);
 
     const loadInvoices = onBeforeMount(() => {
       loadInvoice().then((invoicedata) => {
         Loading.value = true;
         data.value = invoicedata.data;
+        rows.value = invoicedata.data;
+        console.log(rows.value);
         Loading.value = false;
       });
     });
@@ -129,13 +250,25 @@ export default {
         Loading.value = false;
       });
     };
+    const loadGstInvoiceData = onBeforeMount(() =>{
+      loadgstInvoice().then((gstdata)=>{
+        gstrows.value = gstdata.data
+      })
+    })
     return {
       //variables
       data,
       tab,
       Loading,
+      columns,
+      rows,
+      gstcolumns,
+      gstrows,
+      separator,
+      filter,
       //functions
       loadInvoices,
+      loadGstInvoiceData,
       redirectToIndividualInvoice,
       redirectToEditInvoice,
       deleteInvoiceAction,

@@ -8,20 +8,19 @@
       <form @submit.prevent="invoiceSubmit">
         <q-card-section>
           <!-- //date and invoice section -->
-          
-            
 
-            <div class="text-center"> <p class="p-align-date">
-                      <b>DATE</b> : {{ `${date} -  ${month} - ${year}` }}
-                    </p></div>
-          
+          <div class="text-center">
+            <p class="p-align-date">
+              <b>DATE</b> : {{ `${date} -  ${month} - ${year}` }}
+            </p>
+          </div>
 
           <!-- customer details and if gst details -->
           <div class="row justify-evenly">
             <div class="col-5 col-md-5 col-xs-12 col-sm-12">
               <h6 class="customerhead">Customer Details</h6>
               <hr />
-              <div class="row">
+              <div class="row justify-evenly">
                 <!-- customer details -->
                 <div class="col-5 col-md-5 col-xs-12 col-sm-12">
                   <q-input
@@ -60,8 +59,10 @@
                     v-model="gstValue"
                     @update:model-value="(val) => manipulateGst(val)"
                     val="xl"
+                    label="GST Status"
                   />
-                  {{ gstValue }}
+
+                  <div class="q-pa-md">
                   <div v-if="gstValue">
                     <p>GST Field</p>
                     <hr />
@@ -90,6 +91,8 @@
                   <div v-else>
                     <h4>No GST for Customer</h4>
                   </div>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -125,12 +128,11 @@
                   />
                   <br />
                 </div>
-                
               </div>
             </div>
           </div>
           <hr />
-          <br/>
+          <br />
           <div class="text-h6">Payment Details</div>
           <!-- //product price details -->
           <div class="row justify-evenly">
@@ -205,10 +207,9 @@ export default {
       invoiceData.value.gstInvoice = val;
     };
 
-    
     const invoiceSubmit = () => {
-      createInvoices(invoiceData.value)
-      Router.push("/invoices")
+      createInvoices(invoiceData.value);
+      Router.push("/invoices");
     };
     return {
       //variables

@@ -35,7 +35,6 @@
             <div class="text-h5">All Contacts</div>
             <hr />
             <div class="row">
-              
               <div
                 v-for="(item, index) in contacts"
                 :key="index"
@@ -70,8 +69,6 @@
                   </q-card-actions>
                 </q-card>
               </div>
-             
-             
             </div>
           </q-card-section>
         </q-card>
