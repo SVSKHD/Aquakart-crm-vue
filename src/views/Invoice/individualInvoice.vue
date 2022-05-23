@@ -27,7 +27,7 @@
           <q-spinner color="primary" size="3em" />
         </div>
         <div v-else>
-          <q-card>
+          <q-card flat>
             <q-card-section>
               <div ref="content" id="content">
                 <img

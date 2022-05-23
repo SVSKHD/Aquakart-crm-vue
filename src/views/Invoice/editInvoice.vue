@@ -1,39 +1,39 @@
 <template>
-  <div>
-    <br />
-    <div class="text-h2">Invoice update</div>
-    <hr />
-    <div v-if="submit">
-      <div class="text-green">Succesfully Submitted</div>
-    </div>
-    <div v-else>
-      <div v-if="Loading">
-        <div class="text-center">
-          <q-spinner color="primary" size="3em" />
-        </div>
+  <div class="q-pa-md">
+    <div>
+      <br />
+      <div class="text-h2">Invoice update</div>
+      <hr />
+      <div v-if="submit">
+        <div class="text-green">Succesfully Submitted</div>
       </div>
       <div v-else>
-        <q-card>
-          <div class="q-pa-md">
+        <div v-if="Loading">
+          <div class="text-center">
+            <q-spinner color="primary" size="3em" />
+          </div>
+        </div>
+        <div v-else>
+          <q-card flat>
             <!-- date & invoice No -->
-            <div class="row">
-              <div class="col-6">
+            <div class="row justify-evenly">
+              <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12">
                 <q-input dense outlined v-model="updateData.date">
-                  <template v-slot:prepend>
+                  <template v-slot:append>
                     <q-icon name="event" />
                   </template>
                 </q-input>
               </div>
-              <div class="col-6">
+              <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12">
                 <div class="text-h4">invoice : {{ updateData.No }}</div>
               </div>
             </div>
             <br />
             <hr />
             <!-- user details -->
-            <div class="row">
+            <div class="row justify-evenly">
               <!-- customer details -->
-              <div class="col-5 margin">
+              <div class="col-5 col-md-5 col-xs-12 col-sm-12">
                 <q-input
                   v-model="updateData.name"
                   dense
@@ -64,48 +64,45 @@
                 />
               </div>
               <!-- gst details -->
-              <div class="row justify-evenly">
-                <div class="col-5">
-                  <q-toggle
-                    size="xl"
-                    v-model="updateData.gst"
-                    @update:model-value="(val) => manipulateGst(val)"
-                    val="xl"
+              <div class="col-5 col-md-5 col-xs-12 col-sm-12">
+                <q-toggle
+                  size="xl"
+                  v-model="updateData.gst"
+                  @update:model-value="(val) => manipulateGst(val)"
+                  val="xl"
+                />
+                {{ gstValue }}
+
+                <div v-if="updateData.gst">
+                  <p>GST Field</p>
+                  <hr />
+                  <q-input
+                    v-model="updateData.businessName"
+                    dense
+                    outlined
+                    label="Business Name"
                   />
-                  {{ gstValue }}
+                  <br />
+                  <q-input
+                    dense
+                    outlined
+                    v-model="updateData.Gst"
+                    label="GST"
+                  />
+                  <br />
+                  <q-input
+                    dense
+                    outlined
+                    v-model="updateData.businessAddress"
+                    type="textarea"
+                    label="Registered Address"
+                  />
                 </div>
-
-                <div class="col-5">
-                  <div v-if="updateData.gst">
-                    <p>GST Field</p>
-                    <hr />
-                    <q-input
-                      v-model="updateData.businessName"
-                      dense
-                      outlined
-                      label="Business Name"
-                    />
-                    <br />
-                    <q-input
-                      dense
-                      outlined
-                      v-model="updateData.Gst"
-                      label="GST"
-                    />
-                    <br />
-                    <q-input
-                      dense
-                      outlined
-                      v-model="updateData.businessAddress"
-                      type="textarea"
-                      label="Registered Address"
-                    />
-                  </div>
-                  <div v-else>
-                    <h4>No GST for Customer</h4>
-                  </div>
+                <div v-else>
+                  <h4>No GST for Customer</h4>
                 </div>
-
+              </div>
+              <div class="row justify-evenly">
                 <hr />
               </div>
             </div>
@@ -114,7 +111,7 @@
             <div class="text-h2">Product Details</div>
             <hr />
             <div class="row justify-evenly">
-              <div class="col-5">
+              <div class="col-5 col-md-5 col-xs-12 col-sm-12">
                 <q-input
                   dense
                   v-model="updateData.product"
@@ -137,7 +134,7 @@
                 />
                 <br />
               </div>
-              <div class="col-5">
+              <div class="col-5 col-md-5 col-xs-12 col-sm-12">
                 <h4>Quantity : {{ updateData.quantity }}</h4>
                 <h5>Serial : {{ updateData.serial }}</h5>
               </div>
@@ -147,7 +144,7 @@
             <div class="text-h2">Payment Details</div>
             <hr />
             <div class="row justify-evenly">
-              <div class="col-5">
+              <div class="col-5 col-md-5 col-xs-12 col-sm-12">
                 <q-input
                   v-model="updateData.price"
                   dense
@@ -162,20 +159,21 @@
                   label="Payment Type"
                 />
               </div>
-              <div class="col-5">
+              <div class="col-5 col-md-5 col-xs-12 col-sm-12">
                 <h5>Payment : {{ updateData.price }}</h5>
                 <h6>Payment Type : {{ updateData.paymentType }}</h6>
               </div>
             </div>
-          </div>
-          <q-card-actions>
-            <q-btn
-              style="background: #041562; color: white"
-              @click="handleSubmit"
-              label="update"
-            />
-          </q-card-actions>
-        </q-card>
+
+            <q-card-actions>
+              <q-btn
+                style="background: #041562; color: white"
+                @click="handleSubmit"
+                label="update"
+              />
+            </q-card-actions>
+          </q-card>
+        </div>
       </div>
     </div>
   </div>

@@ -83,7 +83,7 @@
 
         <q-tab-panel name="gst-invoices">
           <div class="text-h6">GST-Invoices</div>
-           <q-table
+          <q-table
             title="Invoices"
             :rows="gstrows"
             :columns="gstcolumns"
@@ -145,7 +145,7 @@ import router from "../../router";
 export default {
   setup() {
     let tab = ref("invoices");
-    const { loadInvoice, loadgstInvoice ,deleteInvoice } = invoiceCrud();
+    const { loadInvoice, loadgstInvoice, deleteInvoice } = invoiceCrud();
     let data = ref([]);
     let separator = ref("vertical");
     let filter = ref("");
@@ -189,7 +189,7 @@ export default {
 
     const rows = ref([]);
 
-     const gstcolumns = ref([
+    const gstcolumns = ref([
       {
         name: "name",
         required: true,
@@ -250,11 +250,11 @@ export default {
         Loading.value = false;
       });
     };
-    const loadGstInvoiceData = onBeforeMount(() =>{
-      loadgstInvoice().then((gstdata)=>{
-        gstrows.value = gstdata.data
-      })
-    })
+    const loadGstInvoiceData = onBeforeMount(() => {
+      loadgstInvoice().then((gstdata) => {
+        gstrows.value = gstdata.data;
+      });
+    });
     return {
       //variables
       data,

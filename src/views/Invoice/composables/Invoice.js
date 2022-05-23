@@ -6,7 +6,7 @@ const createInvoices = async (data) =>
 const loadInvoice = async () =>
   await Axios.get(`${process.env.VUE_APP_ROOT_API}/invoiceload`);
 
-  const loadgstInvoice = async () =>
+const loadgstInvoice = async () =>
   await Axios.get(`${process.env.VUE_APP_ROOT_API}/getgstinvoice`);
 
 const updateInvoiceData = async (name, data) =>

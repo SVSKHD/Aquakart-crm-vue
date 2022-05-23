@@ -63,36 +63,35 @@
                   />
 
                   <div class="q-pa-md">
-                  <div v-if="gstValue">
-                    <p>GST Field</p>
-                    <hr />
-                    <q-input
-                      v-model="invoiceData.businessName"
-                      dense
-                      outlined
-                      label="Business Name"
-                    />
-                    <br />
-                    <q-input
-                      dense
-                      outlined
-                      v-model="invoiceData.Gst"
-                      label="GST"
-                    />
-                    <br />
-                    <q-input
-                      dense
-                      outlined
-                      v-model="invoiceData.businessAddress"
-                      type="textarea"
-                      label="Registered Address"
-                    />
+                    <div v-if="gstValue">
+                      <p>GST Field</p>
+                      <hr />
+                      <q-input
+                        v-model="invoiceData.businessName"
+                        dense
+                        outlined
+                        label="Business Name"
+                      />
+                      <br />
+                      <q-input
+                        dense
+                        outlined
+                        v-model="invoiceData.Gst"
+                        label="GST"
+                      />
+                      <br />
+                      <q-input
+                        dense
+                        outlined
+                        v-model="invoiceData.businessAddress"
+                        type="textarea"
+                        label="Registered Address"
+                      />
+                    </div>
+                    <div v-else>
+                      <h4>No GST for Customer</h4>
+                    </div>
                   </div>
-                  <div v-else>
-                    <h4>No GST for Customer</h4>
-                  </div>
-                  </div>
-
                 </div>
               </div>
             </div>
