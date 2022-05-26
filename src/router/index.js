@@ -10,8 +10,9 @@ import IndividualInvoice from "../views/Invoice/individualInvoice";
 import UpdateInvoice from "../views/Invoice/editInvoice";
 import Contact from "../views/users/contact";
 import contactIndividual from "../views/users/contactindividual";
+import Quotation from "../views/quotations/quotation";
 //Aqua
-import Blogs from "../views/Aqua/Blog/Blog";
+import Blog from "../views/Aqua/Blog/BlogOperations";
 //categories
 import Categories from "../views/Aqua/categories/categories";
 //products
@@ -37,12 +38,13 @@ const routes = [
         component: UpdateInvoice,
       },
       { path: "/invoices", name: "Invoices", component: Invoices },
-
+      //quotation
+      { path: "/quotations", name: "quotations", component: Quotation },
       //contacts
       { path: "/contacts", name: "Contacts", component: Contact },
       { path: "/contact/:name", name: "Contact", component: contactIndividual },
       //Aquamenu-
-      { path: "/blogs", name: "Blogs", component: Blogs },
+      { path: "/blogoperations", name: "Blogs", component: Blog },
       //categories
       { path: "/categories", name: "Categories", component: Categories },
       //subcategories

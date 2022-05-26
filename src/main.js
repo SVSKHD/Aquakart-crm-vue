@@ -6,7 +6,10 @@ import store from "./store";
 import { Quasar } from "quasar";
 import quasarUserOptions from "./quasar-user-options";
 
-createApp(App)
+
+const aquakart = createApp(App)
+
+aquakart 
   .use(Quasar, quasarUserOptions)
   .use(store)
   .use(router)

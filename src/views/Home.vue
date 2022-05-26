@@ -58,7 +58,7 @@ export default {
       { name: "Follow up", path: "/follow-up", icon: "people" },
     ]);
     let aquaMenu = ref([
-      { name: "Blog", path: "/blogs", icon: "date_range" },
+      { name: "Blog", path: "/blogoperations", icon: "date_range" },
       { name: "Products", path: "/products", icon: "person" },
       { name: "Categories", path: "/categories", icon: "Categories" },
       {

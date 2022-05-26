@@ -1,77 +1,79 @@
 <template>
   <div class="q-pa-md">
-    <q-input outlined dense label="Contact" />
     <br />
     <div class="row">
-      <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+      <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
         <q-card class="margin">
           <q-card-section>
             <form @submit.prevent="handleContact">
               <div class="text-center">
-                <q-input outlined label="name" v-model="createContact.name" />
-                <br />
-                <q-input outlined label="email" v-model="createContact.email" />
-                <br />
-                <q-input outlined label="phone" v-model="createContact.phone" />
-                <br />
-                <q-input outlined label="type" v-model="createContact.type" />
+                <q-input
+                  dense
+                  outlined
+                  label="name"
+                  v-model="createContact.name"
+                />
                 <br />
                 <q-input
+                  dense
+                  outlined
+                  label="email"
+                  v-model="createContact.email"
+                />
+                <br />
+                <q-input
+                  dense
+                  outlined
+                  label="phone"
+                  v-model="createContact.phone"
+                />
+                <br />
+                <q-input
+                  dense
+                  outlined
+                  label="type"
+                  v-model="createContact.type"
+                />
+                <br />
+                <q-input
+                  dense
                   outlined
                   label="product"
                   v-model="createContact.product"
                 />
               </div>
               <q-card-actions>
-                <q-btn @click="handleContact" flat label="Submit" />
+                <q-btn
+                  style="background: #041562; color: white"
+                  @click="handleContact"
+                  flat
+                  label="Submit"
+                />
               </q-card-actions>
             </form>
           </q-card-section>
         </q-card>
       </div>
-      <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
-        <q-card>
-          <q-card-section>
-            <div class="text-h5">All Contacts</div>
-            <hr />
-            <div class="row">
-              <div
-                v-for="(item, index) in contacts"
-                :key="index"
-                class="col-md-4 col-lg-4 col-sm-12 col-xs-12"
-              >
-                <q-card
-                  v-ripple
-                  :to="path"
-                  class="my-card header text-white q-hoverable"
-                >
-                  <q-card-section>
-                    <div class="text-center">
-                      <div class="text-h6">{{ item.name }}</div>
-                      <div class="text-h6">{{ item.phone }}</div>
-                    </div>
-                  </q-card-section>
-
-                  <q-card-actions>
-                    <q-btn
-                      @click="redirect(item.name)"
-                      flat
-                      color="#041562"
-                      icon="people"
-                      :to="path"
-                    />
-                    <q-btn
-                      @click="deleteContactName(item.name)"
-                      flat
-                      color="#041562"
-                      icon="delete"
-                    />
-                  </q-card-actions>
-                </q-card>
-              </div>
-            </div>
-          </q-card-section>
-        </q-card>
+      <div class="col-md-9 col-lg-9 col-sm-12 col-xs-12">
+        <q-table 
+        title="Contacts"
+        rows=""
+        cols=""
+        loading=""
+        >
+        <template v-slot:header="props">
+        <q-tr :props="props">
+          <q-th
+            v-for="col in props.cols"
+            :key="col.name"
+            :props="props"
+            class="text-italic text-purple"
+          >
+            {{ col.label }}
+          </q-th>
+        </q-tr>
+      </template>
+        </q-table>
       </div>
     </div>
   </div>
@@ -96,6 +98,11 @@ export default {
     let contactReload = ref(false);
 
     let contacts = ref([]);
+
+    //tablerequirements
+    let rows = ref([])
+    let columns = ref([])
+    let loading = ref(false)
 
     const handleContact = () => {
       createContactAPI(createContact.value).then((data) => {
@@ -127,6 +134,9 @@ export default {
 
     return {
       //variables
+      columns,
+      rows,
+      loading,
       contacts,
       createContact,
       contactReload,

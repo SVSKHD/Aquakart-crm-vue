@@ -104,6 +104,11 @@ export default {
         icon: "person",
         path: "/contacts",
       },
+      {
+        label:"quotations",
+        icon:"document_scanner",
+        path:"/quotations"
+      }
     ]);
 
     // functions
