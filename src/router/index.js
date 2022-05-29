@@ -21,15 +21,15 @@ import Products from "../views/Aqua/products/products";
 import SubCate from "../views/Aqua/subcategories/sub-categories";
 
 //Auth
-import AuthScreen from "../views/Auth/AuthScreen";
+//import AuthScreen from "../views/Auth/AuthScreen";
 const routes = [
-  { path: "/", name: "Aquakart Auth", component: AuthScreen },
+  // { path: "/", name: "Aquakart Auth", component: AuthScreen },
   {
     path: "/layout",
     name: "Layout",
     component: Layout,
     children: [
-      { path: "/home", name: "Home", component: Home },
+      { path: "/", name: "Home", component: Home },
       //invoices
       { path: "/invoice-create", name: "Invoice-create", component: Invoice },
       {
