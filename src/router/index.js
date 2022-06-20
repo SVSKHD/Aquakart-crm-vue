@@ -2,9 +2,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import MainLayout from "../Layout/MainLayout"
 
+
 //invoice
 import Invoices from "../views/Invoices/invoices"
-
+import IndividualInvoice from "../views/Invoices/individualInvoice"
 
 //auth
 import Signin from "../views/Auth/Signin"
@@ -25,6 +26,11 @@ const routes = [
       //invoices
       {path:"/invoices" , name:"Invoices" , component : Invoices}
     ]
+  },
+  {
+    path:"/liveinvoice/:name",
+    name:"Invoice",
+    component:IndividualInvoice
   }
 ]
 
