@@ -140,7 +140,7 @@
           </q-card-actions>
         </q-card>
       </div>
-    <div v-else class="col-lg-4 col-md-4 col-xs-12 col-sm-12 q-pa-sm">
+      <div v-else class="col-lg-4 col-md-4 col-xs-12 col-sm-12 q-pa-sm">
         <q-card>
           <q-item>
             <q-item-section>
@@ -373,7 +373,13 @@
                 </q-input>
               </div>
               <div class="col-lg-6 col-md-4 col-xs-12 col-sm-12 q-pa-md">
-              <q-select dense outlined v-model="invoiceCreate.deliveryStatus" :options="options" label="delivery status" />
+                <q-select
+                  dense
+                  outlined
+                  v-model="invoiceCreate.deliveryStatus"
+                  :options="options"
+                  label="delivery status"
+                />
               </div>
             </div>
           </q-card-section>
@@ -387,7 +393,7 @@
           </q-card-actions>
         </q-card>
       </div>
-     <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12 q-pa-sm">
+      <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12 q-pa-sm">
         <div>
           <q-card :style="invoiceBorder">
             <q-card-section
@@ -459,60 +465,78 @@
               <hr />
               <div class="row">
                 <div class="col-md-2 col-lg-3 col-sm-12 col-xs-12 text-center">
-                 <b> Product-Name</b>
+                  <b> Product-Name</b>
                 </div>
                 <div class="col-md-2 col-lg-3 col-sm-12 col-xs-12 text-center">
                   <b>Product-Quantity</b>
                 </div>
                 <div class="col-md-2 col-lg-3 col-sm-12 col-xs-12 text-center">
-                 <b> GST </b>
+                  <b> GST </b>
                 </div>
-                 <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12 text-center">
+                <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12 text-center">
                   <b>Product-Price</b>
                 </div>
               </div>
               <hr />
-               <div class="row">
+              <div class="row">
                 <div class="col-md-2 col-lg-3 col-sm-12 col-xs-12 text-center">
-                 <b>{{invoiceCreate.productName}}</b>
+                  <b>{{ invoiceCreate.productName }}</b>
                 </div>
                 <div class="col-md-2 col-lg-3 col-sm-12 col-xs-12 text-center">
-                  <b>{{invoiceCreate.productQuantity}}</b>
+                  <b>{{ invoiceCreate.productQuantity }}</b>
                 </div>
                 <div class="col-md-2 col-lg-3 col-sm-12 col-xs-12 text-center">
-                 <b>{{gstValueGenerate()}}</b>
+                  <b>{{ gstValueGenerate() }}</b>
                 </div>
-                 <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12 text-center">
-                  <b class="text-green">₹  {{invoiceCreate.productPrice}} /-</b>
+                <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12 text-center">
+                  <b class="text-green"
+                    >₹ {{ invoiceCreate.productPrice }} /-</b
+                  >
                 </div>
               </div>
-              <hr/>
-              <div class="text-h6 text-center">Serials : {{invoiceCreate.productSerialNo}}</div>
-              <hr/>
+              <hr />
+              <div class="text-h6 text-center">
+                Serials : {{ invoiceCreate.productSerialNo }}
+              </div>
+              <hr />
               <div>
                 <div class="text-h6 text-red">Terms & Conditions</div>
-                 <q-list light bordered separator dense padding class="rounded-borders">
-                  <q-item v-for="item in termsAndConditions" :key="item" clickable v-ripple>
-                    <q-item-section><b class="text-red">{{item.title}}</b></q-item-section>
-                     <q-item-section><b>{{item.description}}</b></q-item-section>
+                <q-list
+                  light
+                  bordered
+                  separator
+                  dense
+                  padding
+                  class="rounded-borders"
+                >
+                  <q-item
+                    v-for="item in termsAndConditions"
+                    :key="item"
+                    clickable
+                    v-ripple
+                  >
+                    <q-item-section
+                      ><b class="text-red">{{ item.title }}</b></q-item-section
+                    >
+                    <q-item-section
+                      ><b>{{ item.description }}</b></q-item-section
+                    >
                   </q-item>
                 </q-list>
               </div>
-              <br/>
-               <div>
+              <br />
+              <div>
                 <div class="text-h6 text-indigo-9">Customer Care</div>
               </div>
               <hr />
               <div class="row">
-                <div
-                  class="col-md-6 col-lg-6 col-sm-12 col-xs-12 text-left"
-                >
-                 <div class="text-h6">Kent Customer Care</div>
-                <div class="text-subtext2">
-                  <a class="linkstyle" href="tel:09278912345">
-                  09278912345
-                  </a>
-                </div>
+                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 text-left">
+                  <div class="text-h6">Kent Customer Care</div>
+                  <div class="text-subtext2">
+                    <a class="linkstyle" href="tel:09278912345">
+                      09278912345
+                    </a>
+                  </div>
                 </div>
                 <div
                   class="col-md-6 col-lg-6 col-sm-12 col-xs-12 text-center"
@@ -529,7 +553,8 @@
               v-model="tab"
               dense
               class="text-grey"
-              active-color="primary"
+              style="background-color: #243a73;"
+              active-color="white"
               indicator-color="primary"
               align="justify"
               narrow-indicator
@@ -542,7 +567,21 @@
             <!-- tab panels -->
             <q-tab-panels v-model="tab" animated>
               <q-tab-panel name="mails">
-                <q-table title="Invoices" />
+                <q-table title="Invoices" :filter="filter" :rows="rows" :columns="columns">
+                  <template v-slot:top-right>
+                    <q-input
+                      outlined
+                      dense
+                      debounce="300"
+                      v-model="filter"
+                      placeholder="Search Here"
+                    >
+                      <template v-slot:append>
+                        <q-icon name="search" />
+                      </template>
+                    </q-input>
+                  </template>
+                </q-table>
               </q-tab-panel>
 
               <q-tab-panel name="alarms">
@@ -557,7 +596,7 @@
 </template>
 
 <script>
-import { ref ,watch, onMounted } from "vue";
+import { ref, watch, onMounted, onBeforeMount } from "vue";
 import InvoiceOperations from "./invoice";
 import NotificationHelper from "@/helpers/NotificationHelper";
 export default {
@@ -574,17 +613,17 @@ export default {
     let year = new Date().getFullYear();
     let month = new Date().getMonth();
     let editStatus = ref(false);
-    const { createInvoice } = InvoiceOperations();
+    const { createInvoice, loadInvoices } = InvoiceOperations();
 
-    watch(gst,()=>{
-      if(gst.value === true){
-        invoiceCreate.value.gst=true
-      }else{
-        invoiceCreate.value.gst=false
+    watch(gst, () => {
+      if (gst.value === true) {
+        invoiceCreate.value.gst = true;
+      } else {
+        invoiceCreate.value.gst = false;
       }
-    })
+    });
 
-    let options = ref(["delivered" , "not yet delivered"])
+    let options = ref(["delivered", "not yet delivered"]);
 
     let invoiceCreate = ref({
       //customer
@@ -611,7 +650,7 @@ export default {
       deliveryStatus: "",
     });
 
-     let invoiceUpdate = ref({
+    let invoiceUpdate = ref({
       //customer
       name: "",
       phone: "",
@@ -636,47 +675,128 @@ export default {
       deliveryStatus: "",
     });
 
+    //filter in table
+    let filter = ref("")
+
+    //table data
+    let columns = ref([
+      {
+        name: "name",
+        required: true,
+        label: "Customer Name",
+        align: "left",
+        field: (row) => row.name,
+        format: (val) => `${val}`,
+        sortable: true,
+      },
+      {
+        name: "calories",
+        align: "center",
+        label: "Purchased Product",
+        field: "product",
+        sortable: true,
+      },
+      {
+        name: "sodium",
+        align: "center",
+        label: "productQuantity",
+        field: "quantity",
+      },
+      { name: "protein", align: "center", label: "phone", field: "phone" },
+      { name: "carbs", label: "status", field: "paymentStatus" },
+      { name: "fat", label: "Price", field: "price", sortable: true },
+      { name: "sodium", label: "Delivered", field: "delivered" },
+    ]);
+    let rows = ref([]);
+    
+
+    const invoicesLoadTable = onBeforeMount(() => {
+      loadInvoices().then((data) => {
+        console.log(data.data);
+        let apidata = data.data;
+        apidata.map((data) => {
+          rows.value.push({
+            name: data.name,
+            product: data.productName,
+            price: data.productPrice,
+            phone: data.phone,
+            paymentStatus: data.paymentDetails,
+            quantity: data.productQuantity,
+            delivered: data.deliveryStatus,
+          });
+        });
+      });
+    });
+
     let termsAndConditions = ref([
-     {title:"Transport" , description:"TRANSPORT/LIFTING CHARGES WILL BE BORN BY THE CUSTOMER.(1000/-)"},
-     {title:"Plumber" , description:" PLUMBER SHOULD BE PROVIDED AT THE TIME OF INSTALLATION (OR) OUR PLUMBERS MIGHT ATTRACT PLUMBING CHARGES. (1500-3500/-)"},
-     {title:"Plumbing Material" , description:"PLUMBING MATERIALS / ELECTRICAL CONNECTION BY CUSTOMER, Plumbing MATERIAL(5000-6000/-) Approx."},
-     {title:"Electric Socket If purchased Auto Softener" , description:"ONE ELECTRIC SOCKET HAS TO BE PROVIDED AT THE TIME OF INSTALLATION, IF PRESSURE BOOSTER THEN TWO ELECTRIC SOCKETS."},
-     {title:"Delivery and Installation policy" , description:"DELIVERY / INSTALLATION COMPLETED WITHIN 7 WORKING DAYS. "},
-     {title:"Advance policy" , description:"100% ADVANCE ALONG WITH PO."},
-     {title:"Work Monitoring" , description:"PLUMBING WORK MONITORING WILL BE DONE BY OUR ENGINEERS"}
-    ])
+      {
+        title: "Transport",
+        description:
+          "TRANSPORT/LIFTING CHARGES WILL BE BORN BY THE CUSTOMER.(1000/-)",
+      },
+      {
+        title: "Plumber",
+        description:
+          " PLUMBER SHOULD BE PROVIDED AT THE TIME OF INSTALLATION (OR) OUR PLUMBERS MIGHT ATTRACT PLUMBING CHARGES. (1500-3500/-)",
+      },
+      {
+        title: "Plumbing Material",
+        description:
+          "PLUMBING MATERIALS / ELECTRICAL CONNECTION BY CUSTOMER, Plumbing MATERIAL(5000-6000/-) Approx.",
+      },
+      {
+        title: "Electric Socket If purchased Auto Softener",
+        description:
+          "ONE ELECTRIC SOCKET HAS TO BE PROVIDED AT THE TIME OF INSTALLATION, IF PRESSURE BOOSTER THEN TWO ELECTRIC SOCKETS.",
+      },
+      {
+        title: "Delivery and Installation policy",
+        description:
+          "DELIVERY / INSTALLATION COMPLETED WITHIN 7 WORKING DAYS. ",
+      },
+      { title: "Advance policy", description: "100% ADVANCE ALONG WITH PO." },
+      {
+        title: "Work Monitoring",
+        description: "PLUMBING WORK MONITORING WILL BE DONE BY OUR ENGINEERS",
+      },
+    ]);
 
     const SubmitInvoice = () => {
       console.log("invoice", invoiceCreate.value);
-      createInvoice(invoiceCreate.value).then(() => {
-        invoiceSubmit.value = true;
-        if (invoiceSubmit.value === true) {
-          invoiceStatus.value = "Succesfully Created";
-          invoiceStatusColor.value = "bg-green-8 text-white text-center";
-          invoiceBorder.value =
-            "border-color: #388e3c;border-style:solid; border-width:5px;border-radius: 0px!important;";
-        NotificationHelper.createSuccessNotification("Succesfully Invoice Created") 
-        gstValueGenerate()
-        }
-      })
-      .catch(()=>{
-        invoiceSubmit.value = false;
-         if (invoiceSubmit.value === false) {
-          invoiceStatus.value = "Please Try Again";
-          invoiceStatusColor.value = "bg-red-8 text-white text-center";
-          invoiceBorder.value =
-            "border-color: #b71c1c;border-style:solid; border-width:5px;border-radius: 0px!important;";
-        NotificationHelper.createErrorNotification("!Something Went Wrong , Please try again") 
-        }
-      })
+      createInvoice(invoiceCreate.value)
+        .then(() => {
+          invoiceSubmit.value = true;
+          if (invoiceSubmit.value === true) {
+            invoiceStatus.value = "Succesfully Created";
+            invoiceStatusColor.value = "bg-green-8 text-white text-center";
+            invoiceBorder.value =
+              "border-color: #388e3c;border-style:solid; border-width:5px;border-radius: 0px!important;";
+            NotificationHelper.createSuccessNotification(
+              "Succesfully Invoice Created"
+            );
+            gstValueGenerate();
+          }
+        })
+        .catch(() => {
+          invoiceSubmit.value = false;
+          if (invoiceSubmit.value === false) {
+            invoiceStatus.value = "Please Try Again";
+            invoiceStatusColor.value = "bg-red-8 text-white text-center";
+            invoiceBorder.value =
+              "border-color: #b71c1c;border-style:solid; border-width:5px;border-radius: 0px!important;";
+            NotificationHelper.createErrorNotification(
+              "!Something Went Wrong , Please try again"
+            );
+          }
+        });
     };
 
-   const gstValueGenerate = onMounted(() => {
+    const gstValueGenerate = onMounted(() => {
       let price = invoiceCreate.value.price;
       let rawValue = price - Math.round(price * 0.18);
       let gstPrice = Math.round(rawValue * 0.18);
       return gstPrice;
-    })
+    });
 
     const editStatusButton = () => {
       editStatus.value = true;
@@ -686,6 +806,7 @@ export default {
       //variables
       gst,
       tab,
+      filter,
       invoiceStatus,
       invoiceBorder,
       invoiceStatusColor,
@@ -697,10 +818,13 @@ export default {
       month,
       editStatus,
       termsAndConditions,
+      rows,
+      columns,
       //functions
       SubmitInvoice,
       gstValueGenerate,
       editStatusButton,
+      invoicesLoadTable,
     };
   },
 };
@@ -715,9 +839,7 @@ export default {
   border-style: groove;
   border-radius: 0px !important;
 }
-.linkstyle{
+.linkstyle {
   text-decoration: none;
-
 }
-
 </style>
