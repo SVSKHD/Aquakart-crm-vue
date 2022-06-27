@@ -553,7 +553,7 @@
               v-model="tab"
               dense
               class="text-grey"
-              style="background-color: #243a73;"
+              style="background-color: #243a73"
               active-color="white"
               indicator-color="primary"
               align="justify"
@@ -567,7 +567,12 @@
             <!-- tab panels -->
             <q-tab-panels v-model="tab" animated>
               <q-tab-panel name="mails">
-                <q-table title="Invoices" :filter="filter" :rows="rows" :columns="columns">
+                <q-table
+                  title="Invoices"
+                  :filter="filter"
+                  :rows="rows"
+                  :columns="columns"
+                >
                   <template v-slot:top-right>
                     <q-input
                       outlined
@@ -580,6 +585,35 @@
                         <q-icon name="search" />
                       </template>
                     </q-input>
+                  </template>
+                  <template v-slot:body="props">
+                    <q-tr :props="props">
+                      <q-td auto-width>
+                        <q-btn
+                          size="sm"
+                          style="background-color: #243a73; color: aliceblue"
+                          round
+                          dense
+                          @click="openInvoice(props.row.name)"
+                          icon="open_in_new"
+                        />
+                      </q-td>
+                      <q-td
+                        v-for="col in props.cols"
+                        :key="col.name"
+                        :props="props"
+                      >
+                        {{ col.value }}
+                      </q-td>
+                    </q-tr>
+                    <q-tr v-show="props.expand" :props="props">
+                      <q-td colspan="100%">
+                        <div class="text-left">
+                          This is expand slot for row above:
+                          {{ props.row.name }}.
+                        </div>
+                      </q-td>
+                    </q-tr>
                   </template>
                 </q-table>
               </q-tab-panel>
@@ -599,6 +633,7 @@
 import { ref, watch, onMounted, onBeforeMount } from "vue";
 import InvoiceOperations from "./invoice";
 import NotificationHelper from "@/helpers/NotificationHelper";
+import { useRouter } from "vue-router";
 export default {
   setup() {
     let invoiceStatus = ref("Invoice Preview");
@@ -613,6 +648,7 @@ export default {
     let year = new Date().getFullYear();
     let month = new Date().getMonth();
     let editStatus = ref(false);
+    const Router = useRouter();
     const { createInvoice, loadInvoices } = InvoiceOperations();
 
     watch(gst, () => {
@@ -676,7 +712,7 @@ export default {
     });
 
     //filter in table
-    let filter = ref("")
+    let filter = ref("");
 
     //table data
     let columns = ref([
@@ -708,7 +744,11 @@ export default {
       { name: "sodium", label: "Delivered", field: "delivered" },
     ]);
     let rows = ref([]);
-    
+
+    const openInvoice = (name) => {
+      console.log(name);
+      Router.push(`/liveinvoice/${name}`)
+    };
 
     const invoicesLoadTable = onBeforeMount(() => {
       loadInvoices().then((data) => {
@@ -825,6 +865,7 @@ export default {
       gstValueGenerate,
       editStatusButton,
       invoicesLoadTable,
+      openInvoice,
     };
   },
 };

@@ -20,7 +20,7 @@
                     style="height: 140px; max-width: 150px"
                   />
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-left">
                   <div class="q-pa-md">
                     <div class="text-h6" style="color: #243a73">
                       Date : {{ date }}
@@ -30,7 +30,8 @@
               </div>
               <br />
               <div class="row q-pa-md">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center">
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"/>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-left">
                   <div class="text-h4">Customer Details</div>
                   <br />
                   <div class="q-pa-sm text-left">
@@ -45,23 +46,25 @@
                 </div>
                 <div
                   v-if="gst"
-                  class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center"
+                  class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center"
                 >
-                  <div class="text-h4 text-center">Business Details</div>
+                  <div class="text-h4 text-left">Business Details</div>
                   <br />
-                  <div class="q-pa-sm text-center">
-                    <div class="text-h6">Business Name:</div>
-                    <div class="text-h6">Business No:</div>
-                    <div class="text-subtext">Business Address :</div>
-                    <div class="text-subtext2">Business Phone :</div>
+                  <div class="q-pa-sm text-left">
+                    <div class="text-h6">Business Name: {{Data.gstName}}</div>
+                    <div class="text-h6">Business No: {{Data.gstNo}}</div>
+                    <div class="text-subtext">Business Address : {{Data.gstAddress}}</div>
+                    <div class="text-subtext2">Business Phone : {{Data.phone}}</div>
                   </div>
                 </div>
+                
                 <div
                   v-else
-                  class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center"
+                  class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center"
                 >
                   <div class="text-h4">No GST Details yet</div>
                 </div>
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"/>
               </div>
               <hr />
               <q-table
