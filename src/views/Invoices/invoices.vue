@@ -8,7 +8,9 @@
         <q-card>
           <q-item>
             <q-item-section>
-              <q-toolbar-title class="text-center">Update-Form</q-toolbar-title>
+              <q-toolbar-title class="text-center"
+                >Update-Form</q-toolbar-title
+              >
             </q-item-section>
           </q-item>
           <q-card-section>
@@ -16,14 +18,25 @@
             <hr />
             <div class="row">
               <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 q-pa-md">
-                <q-input outlined dense label="Customer Name ">
+                <q-input
+                  v-model="invoiceUpdate.name"
+                  outlined
+                  dense
+                  label="Customer Name "
+                >
                   <template v-slot:prepend>
                     <q-icon name="person" />
                   </template>
                 </q-input>
               </div>
               <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 q-pa-md">
-                <q-input outlined dense maxlength="10" label="Customer Phone">
+                <q-input
+                  v-model="invoiceUpdate.phone"
+                  outlined
+                  dense
+                  maxlength="10"
+                  label="Customer Phone"
+                >
                   <template v-slot:prepend>
                     <q-icon name="phone" />
                   </template>
@@ -35,6 +48,7 @@
                 <q-input
                   outlined
                   dense
+                  v-model="invoiceUpdate.address"
                   label="Customer Address"
                   type="textarea"
                 >
@@ -44,7 +58,12 @@
                 </q-input>
               </div>
               <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 q-pa-md">
-                <q-input outlined dense label="Customer Email">
+                <q-input
+                  v-model="invoiceUpdate.email"
+                  outlined
+                  dense
+                  label="Customer Email"
+                >
                   <template v-slot:prepend>
                     <q-icon name="email" />
                   </template>
@@ -60,16 +79,26 @@
             <div v-if="gst">
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 q-pa-md">
-                  <q-input outlined dense label="Customer GST Name">
+                  <q-input
+                    v-model="invoiceUpdate.gstName"
+                    outlined
+                    dense
+                    label="Customer GST Name"
+                  >
                     <template v-slot:prepend>
-                      <q-icon name="email" />
+                      <q-icon name="text_snippet" />
                     </template>
                   </q-input>
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 q-pa-md">
-                  <q-input outlined dense label="Customer GST NO">
+                  <q-input
+                    v-model="invoiceUpdate.gstNo"
+                    outlined
+                    dense
+                    label="Customer GST NO"
+                  >
                     <template v-slot:prepend>
-                      <q-icon name="email" />
+                      <q-icon name=" confirmation_number" />
                     </template>
                   </q-input>
                 </div>
@@ -78,6 +107,7 @@
                 <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 q-pa-md">
                   <q-input
                     outlined
+                    v-model="invoiceUpdate.gstAddress"
                     dense
                     label="Customer GST Address"
                     type="textarea"
@@ -88,7 +118,12 @@
                   </q-input>
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 q-pa-md">
-                  <q-input outlined dense label="Customer Email">
+                  <q-input
+                    v-model="invoiceUpdate.email"
+                    outlined
+                    dense
+                    label="Customer Email"
+                  >
                     <template v-slot:prepend>
                       <q-icon name="email" />
                     </template>
@@ -102,40 +137,122 @@
             <hr />
             <div class="row">
               <div class="col-lg-6 col-md-4 col-xs-12 col-sm-12 q-pa-md">
-                <q-input outlined dense label="Product Name ">
+                <q-input
+                  v-model="invoiceUpdate.productName"
+                  outlined
+                  dense
+                  label="Product Name "
+                >
                   <template v-slot:prepend>
                     <q-icon name="shopping_bag" />
                   </template>
                 </q-input>
               </div>
               <div class="col-lg-6 col-md-4 col-xs-12 col-sm-12 q-pa-md">
-                <q-input outlined dense label="Product Quantity">
+                <q-input
+                  v-model="invoiceUpdate.productQuantity"
+                  outlined
+                  dense
+                  label="Product Quantity"
+                >
                   <template v-slot:prepend>
                     <q-icon name=" format_list_numbered" />
                   </template>
                 </q-input>
               </div>
               <div class="col-lg-6 col-md-4 col-xs-12 col-sm-12 q-pa-md">
-                <q-input outlined dense label="Product Price">
+                <q-input
+                  v-model="invoiceUpdate.productPrice"
+                  outlined
+                  dense
+                  label="Product Price"
+                >
                   <template v-slot:prepend>
                     <q-icon name="price_change" />
                   </template>
                 </q-input>
               </div>
               <div class="col-lg-6 col-md-4 col-xs-12 col-sm-12 q-pa-md">
-                <q-input outlined dense label="Product Serial No">
+                <q-input
+                  v-model="invoiceUpdate.productSerialNo"
+                  outlined
+                  dense
+                  label="Product Serial No"
+                >
                   <template v-slot:prepend>
                     <q-icon name="confirmation_number" />
                   </template>
                 </q-input>
               </div>
             </div>
+            <div class="text-h5">Payment Details</div>
+            <hr />
+            <div class="row">
+              <div class="col-lg-6 col-md-4 col-xs-12 col-sm-12 q-pa-md">
+                <q-input
+                  v-model="invoiceUpdate.paidAmount"
+                  outlined
+                  dense
+                  label="Paid Amount"
+                >
+                  <template v-slot:prepend>
+                    <q-icon name="money" />
+                  </template>
+                </q-input>
+              </div>
+              <div class="col-lg-6 col-md-4 col-xs-12 col-sm-12 q-pa-md">
+                <q-input
+                  v-model="invoiceUpdate.paymentType"
+                  outlined
+                  dense
+                  label="Payment Type"
+                >
+                  <template v-slot:prepend>
+                    <q-icon name="add_task" />
+                  </template>
+                </q-input>
+              </div>
+              <div class="col-lg-6 col-md-4 col-xs-12 col-sm-12 q-pa-md">
+                <q-input
+                  v-model="invoiceUpdate.paymentDetails"
+                  outlined
+                  dense
+                  label="Payment Details"
+                >
+                  <template v-slot:prepend>
+                    <q-icon name="document_scanner" />
+                  </template>
+                </q-input>
+              </div>
+              <div class="col-lg-6 col-md-4 col-xs-12 col-sm-12 q-pa-md">
+                <q-input
+                  v-model="invoiceUpdate.deliveredBy"
+                  outlined
+                  dense
+                  label="Delivered By"
+                >
+                  <template v-slot:prepend>
+                    <q-icon name="delivery_dining" />
+                  </template>
+                </q-input>
+              </div>
+              <div class="col-lg-6 col-md-4 col-xs-12 col-sm-12 q-pa-md">
+                <q-select
+                  dense
+                  outlined
+                  v-model="invoiceUpdate.deliveryStatus"
+                  :options="options"
+                  label="delivery status"
+                />
+              </div>
+            </div>
           </q-card-section>
           <q-card-actions>
             <q-btn
               style="background: #243a73; color: aliceblue"
+              @click="updateInvoiceSubmit"
               flat
-              label="Update"
+              label="submit"
             />
           </q-card-actions>
         </q-card>
@@ -567,35 +684,34 @@
             <!-- tab panels -->
             <q-tab-panels v-model="tab" animated>
               <q-tab-panel name="mails">
+                <!-- new table -->
                 <q-table
                   title="Invoices"
-                  :filter="filter"
                   :rows="rows"
                   :columns="columns"
+                  row-key="name"
                 >
-                  <template v-slot:top-right>
-                    <q-input
-                      outlined
-                      dense
-                      debounce="300"
-                      v-model="filter"
-                      placeholder="Search Here"
-                    >
-                      <template v-slot:append>
-                        <q-icon name="search" />
-                      </template>
-                    </q-input>
+                  <template v-slot:header="props">
+                    <q-tr :props="props">
+                      <q-th auto-width />
+                      <q-th
+                        v-for="col in props.cols"
+                        :key="col.name"
+                        :props="props"
+                      >
+                        {{ col.label }}
+                      </q-th>
+                    </q-tr>
                   </template>
+
                   <template v-slot:body="props">
                     <q-tr :props="props">
                       <q-td auto-width>
                         <q-btn
-                          size="sm"
-                          style="background-color: #243a73; color: aliceblue"
-                          round
+                          flat
                           dense
-                          @click="openInvoice(props.row.name)"
-                          icon="open_in_new"
+                          @click="props.expand = !props.expand"
+                          :icon="props.expand ? 'expand_more' : 'expand_less'"
                         />
                       </q-td>
                       <q-td
@@ -609,8 +725,21 @@
                     <q-tr v-show="props.expand" :props="props">
                       <q-td colspan="100%">
                         <div class="text-left">
-                          This is expand slot for row above:
-                          {{ props.row.name }}.
+                          <q-btn-group outline dense>
+                            <q-btn
+                              @click="editStatusButton(props.row.name)"
+                              outline
+                              color="info"
+                              icon="edit"
+                            />
+                            <q-btn
+                              outline
+                              @click="openInvoice(props.row.name)"
+                              color="green"
+                              icon="open_in_new"
+                            />
+                            <q-btn outline color="red" icon="delete" />
+                          </q-btn-group>
                         </div>
                       </q-td>
                     </q-tr>
@@ -648,8 +777,15 @@ export default {
     let year = new Date().getFullYear();
     let month = new Date().getMonth();
     let editStatus = ref(false);
+    let link = `https://aquakart.store/liveinvoice`;
+
     const Router = useRouter();
-    const { createInvoice, loadInvoices } = InvoiceOperations();
+    const { createInvoice, loadInvoices, updateInvoice, individualInvoice } =
+      InvoiceOperations();
+
+    const whatsAppUrl = (url) => {
+      console.log(url);
+    };
 
     watch(gst, () => {
       if (gst.value === true) {
@@ -687,28 +823,27 @@ export default {
     });
 
     let invoiceUpdate = ref({
-      //customer
-      name: "",
-      phone: "",
-      address: "",
-      email: "",
-      //gst
-      gst: "",
-      gstNo: "",
-      gstAddress: "",
-      gstEmail: "",
-      gstName: "",
-      //product
-      productName: "",
-      productPrice: "",
-      productQuantity: "",
-      productSerialNo: "",
-      //payment
-      paymentType: "",
-      paymentDetails: "",
-      paidAmount: "",
-      deliveredBy: "",
-      deliveryStatus: "",
+            name: "",
+            phone: "",
+            address: "",
+            email: "",
+            //gst
+            gst: "",
+            gstNo: "",
+            gstAddress: "",
+            gstEmail: "",
+            gstName: "",
+            //product
+            productName: "",
+            productPrice: "",
+            productQuantity: "",
+            productSerialNo: "",
+            //payment
+            paymentType: "",
+            paymentDetails: "",
+            paidAmount: "",
+            deliveredBy: "",
+            deliveryStatus: "",
     });
 
     //filter in table
@@ -747,7 +882,7 @@ export default {
 
     const openInvoice = (name) => {
       console.log(name);
-      Router.push(`/liveinvoice/${name}`)
+      Router.push(`/liveinvoice/${name}`);
     };
 
     const invoicesLoadTable = onBeforeMount(() => {
@@ -802,7 +937,6 @@ export default {
     ]);
 
     const SubmitInvoice = () => {
-      console.log("invoice", invoiceCreate.value);
       createInvoice(invoiceCreate.value)
         .then(() => {
           invoiceSubmit.value = true;
@@ -831,6 +965,15 @@ export default {
         });
     };
 
+    const updateInvoiceSubmit = () =>{
+      updateInvoice(invoiceUpdate.value.name , invoiceUpdate.value).then(()=>{
+        NotificationHelper.createSuccessNotification("Successfully Edited")
+      })
+      .catch((err)=>{
+        NotificationHelper.createErrorNotification(`Something Problem in updating the invoice ${err}`)
+      })
+    }
+
     const gstValueGenerate = onMounted(() => {
       let price = invoiceCreate.value.price;
       let rawValue = price - Math.round(price * 0.18);
@@ -838,9 +981,34 @@ export default {
       return gstPrice;
     });
 
-    const editStatusButton = () => {
+    const editStatusButton = (name) => {
       editStatus.value = true;
+      individualInvoice(name).then((data) => {
+        let apidata = data.data;
+        apidata.map((info) => {
+            invoiceUpdate.value.name = info.name
+            invoiceUpdate.value.phone = info.phone
+            invoiceUpdate.value.address = info.address
+            invoiceUpdate.value.email = info.email
+            invoiceUpdate.value.gst = info.gst
+            invoiceUpdate.value.gstAddress = info.gstAddress
+            invoiceUpdate.value.gstName = info.gstName
+            invoiceUpdate.value.productName = info.productName
+            invoiceUpdate.value.productPrice = info.productPrice
+            invoiceUpdate.value.productQuantity = info.productQuantity
+            invoiceUpdate.value.productSerialNo = info.productSerialNo
+            invoiceUpdate.value.paymentType = info.paymentType
+            invoiceUpdate.value.paymentDetails = info.paymentDetails
+            invoiceUpdate.value.paidAmount = info.paidAmount
+            invoiceUpdate.value.deliveredBy = info.deliveredBy
+            invoiceUpdate.value.deliveryStatus = info.deliveryStatus
+        });
+      });
     };
+
+    let updateInvoiceName = ref("");
+
+    
 
     return {
       //variables
@@ -860,12 +1028,16 @@ export default {
       termsAndConditions,
       rows,
       columns,
+      updateInvoiceName,
+      link,
       //functions
+      whatsAppUrl,
       SubmitInvoice,
       gstValueGenerate,
       editStatusButton,
       invoicesLoadTable,
       openInvoice,
+      updateInvoiceSubmit
     };
   },
 };

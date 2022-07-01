@@ -11,7 +11,12 @@ const individualInvoice =async(data)=>(
 const loadInvoices = async() =>(
     await Axios.get(`${process.env.VUE_APP_API}/invoices`)
 )
+
+const updateInvoice = async(name , data) =>{
+ await Axios.put(`${process.env.VUE_APP_API}/invoice-update/${name}` , data)
+}
+
 const InvoiceOperations = () =>{
-    return{createInvoice , individualInvoice , loadInvoices}
+    return{createInvoice , individualInvoice , loadInvoices , updateInvoice}
 }
 export default InvoiceOperations
