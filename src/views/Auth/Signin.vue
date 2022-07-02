@@ -6,7 +6,7 @@
         style="background: #a5becc"
       >
         <div class="column q-pa-lg">
-          <div class="row">
+          <div class="q-pa-md">
             <q-card class="shadow-24" style="width: 500px; height: 480px">
               <q-card-section class="text-center">
                 <q-img src="../../assets/Default.png" class="imgalign" />

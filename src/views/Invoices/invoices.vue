@@ -690,6 +690,7 @@
                   :rows="rows"
                   :columns="columns"
                   row-key="name"
+                  :loading="Loading"
                 >
                   <template v-slot:header="props">
                     <q-tr :props="props">
@@ -770,6 +771,7 @@ export default {
     let invoiceBorder = ref(
       "border-color: #243a73;border-style: solid; border-width:5px;border-radius: 0px!important;"
     );
+    let Loading = ref(false)
     let invoiceSubmit = ref(false);
     let gst = ref(false);
     let tab = ref("mails");
@@ -966,8 +968,10 @@ export default {
     };
 
     const updateInvoiceSubmit = () =>{
-      updateInvoice(invoiceUpdate.value.name , invoiceUpdate.value).then(()=>{
+      updateInvoice(updateInvoiceName.value , invoiceUpdate.value).then(()=>{
+        Loading.value=true
         NotificationHelper.createSuccessNotification("Successfully Edited")
+        Loading.value = false
       })
       .catch((err)=>{
         NotificationHelper.createErrorNotification(`Something Problem in updating the invoice ${err}`)
@@ -986,6 +990,7 @@ export default {
       individualInvoice(name).then((data) => {
         let apidata = data.data;
         apidata.map((info) => {
+            updateInvoiceName.value = info.name
             invoiceUpdate.value.name = info.name
             invoiceUpdate.value.phone = info.phone
             invoiceUpdate.value.address = info.address
@@ -1030,6 +1035,7 @@ export default {
       columns,
       updateInvoiceName,
       link,
+      Loading,
       //functions
       whatsAppUrl,
       SubmitInvoice,

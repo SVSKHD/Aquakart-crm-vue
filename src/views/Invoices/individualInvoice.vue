@@ -25,6 +25,9 @@
                     <div class="text-h6" style="color: #243a73">
                       Date : {{ date }}
                     </div>
+                      <div class="text-h6" style="color: #243a73">
+                      Invoice No : {{}}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -167,6 +170,7 @@ export default {
 
     const rows = ref([]);
     let Data = ref({
+      invoiceNo:"",
       //customer
       name: "",
       phone: "",

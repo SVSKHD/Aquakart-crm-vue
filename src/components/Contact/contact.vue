@@ -43,7 +43,9 @@
         >
           <div class="text-h6">{{ invoiceStatus }}</div>
         </q-card-section>
-        <q-card-section> </q-card-section>
+        <q-card-section> 
+          
+        </q-card-section>
       </q-card>
     </div>
   </div>
@@ -57,7 +59,7 @@ export default {
   components: {},
   setup() {
     let name = ref("Create-Contact");
-    let invoiceStatus = ref("Invoice Status");
+    let invoiceStatus = ref("Contact Status");
     let invoiceData = ref({
         name:"",
         phone:"",
