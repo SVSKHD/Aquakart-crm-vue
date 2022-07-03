@@ -26,7 +26,7 @@
                       Date : {{ date }}
                     </div>
                       <div class="text-h6" style="color: #243a73">
-                      Invoice No : {{}}
+                      Invoice No : {{Date.invoiceNo}}
                     </div>
                   </div>
                 </div>
@@ -233,6 +233,7 @@ export default {
       Loading.value = true;
       individualInvoice(match).then((data) => {
         let apiData = data.data;
+        Data.value.invoiceNo = apiData[0].invoiceSerialNo
         Data.value.name = apiData[0].name;
         Data.value.address = apiData[0].address;
         Data.value.phone = apiData[0].phone;
@@ -249,7 +250,6 @@ export default {
         Data.value.productQuantity = apiData[0].productQuantity;
         Data.value.productSerialNo = apiData[0].productSerialNo;
         date.value = apiData[0].date;
-        console.log("data", data.data);
         Loading.value = false;
         rows.value.push({
           name: apiData[0].productName,
