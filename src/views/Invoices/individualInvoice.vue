@@ -19,6 +19,8 @@
                     src="../../assets/logo.png"
                     style="height: 140px; max-width: 150px"
                   />
+                  <div class="text-h5">Kundana Enterprises</div>
+                  <div class="text-subtext2">GST:36AMUPB4451C1Z7</div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-left">
                   <div class="q-pa-md">
@@ -26,7 +28,7 @@
                       Date : {{ date }}
                     </div>
                       <div class="text-h6" style="color: #243a73">
-                      Invoice No : {{Date.invoiceNo}}
+                      Invoice No : {{Data.invoiceNo}}
                     </div>
                   </div>
                 </div>
