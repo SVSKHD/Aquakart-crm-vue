@@ -8,7 +8,7 @@
     <div v-else class="q-pa-md">
       <div class="row">
         <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12">
-           <div class="q-pa-md">
+           <div class="text-right q-pa-md">
             <q-btn flat dense @click="invoicePrint" icon="print" />
           </div>
         </div>
