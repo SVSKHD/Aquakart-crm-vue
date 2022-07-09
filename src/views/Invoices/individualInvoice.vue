@@ -67,7 +67,7 @@
                   v-else
                   class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center"
                 >
-                  <div class="text-h4">No GST Details yet</div>
+                 
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"/>
               </div>
