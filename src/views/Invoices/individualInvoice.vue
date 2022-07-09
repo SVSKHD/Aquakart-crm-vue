@@ -7,7 +7,11 @@
     </div>
     <div v-else class="q-pa-md">
       <div class="row">
-        <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12"></div>
+        <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12">
+           <div class="q-pa-md">
+            <q-btn flat dense @click="invoicePrint" icon="print" />
+          </div>
+        </div>
 
         <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12">
           <q-card @dblclick="invoicePrint">
@@ -128,9 +132,7 @@
         </div>
 
         <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12">
-          <div class="q-pa-md">
-            <q-btn flat dense @click="invoicePrint" icon="print" />
-          </div>
+         
         </div>
       </div>
     </div>
@@ -235,6 +237,7 @@ export default {
       Loading.value = true;
       individualInvoice(match).then((data) => {
         let apiData = data.data;
+        console.log(data)
         Data.value.invoiceNo = apiData[0].invoiceSerialNo
         Data.value.name = apiData[0].name;
         Data.value.address = apiData[0].address;
