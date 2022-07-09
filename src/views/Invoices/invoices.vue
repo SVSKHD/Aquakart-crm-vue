@@ -8,9 +8,7 @@
         <q-card>
           <q-item>
             <q-item-section>
-              <q-toolbar-title class="text-center"
-                >Update-Form</q-toolbar-title
-              >
+              <q-toolbar-title class="text-center">Update-Form</q-toolbar-title>
             </q-item-section>
           </q-item>
           <q-card-section>
@@ -690,8 +688,22 @@
                   :rows="rows"
                   :columns="columns"
                   row-key="name"
+                  :filter="search"
                   :loading="Loading"
                 >
+                  <template v-slot:top-right>
+                    <q-input
+                      outlined
+                      dense
+                      debounce="300"
+                      v-model="search"
+                      placeholder="Search"
+                    >
+                      <template v-slot:append>
+                        <q-icon name="search" />
+                      </template>
+                    </q-input>
+                  </template>
                   <template v-slot:header="props">
                     <q-tr :props="props">
                       <q-th auto-width />
@@ -771,7 +783,7 @@ export default {
     let invoiceBorder = ref(
       "border-color: #243a73;border-style: solid; border-width:5px;border-radius: 0px!important;"
     );
-    let Loading = ref(false)
+    let Loading = ref(false);
     let invoiceSubmit = ref(false);
     let gst = ref(false);
     let tab = ref("mails");
@@ -780,6 +792,7 @@ export default {
     let month = new Date().getMonth();
     let editStatus = ref(false);
     let link = `https://aquakart.store/liveinvoice`;
+    let search = ref("")
 
     const Router = useRouter();
     const { createInvoice, loadInvoices, updateInvoice, individualInvoice } =
@@ -825,27 +838,27 @@ export default {
     });
 
     let invoiceUpdate = ref({
-            name: "",
-            phone: "",
-            address: "",
-            email: "",
-            //gst
-            gst: "",
-            gstNo: "",
-            gstAddress: "",
-            gstEmail: "",
-            gstName: "",
-            //product
-            productName: "",
-            productPrice: "",
-            productQuantity: "",
-            productSerialNo: "",
-            //payment
-            paymentType: "",
-            paymentDetails: "",
-            paidAmount: "",
-            deliveredBy: "",
-            deliveryStatus: "",
+      name: "",
+      phone: "",
+      address: "",
+      email: "",
+      //gst
+      gst: "",
+      gstNo: "",
+      gstAddress: "",
+      gstEmail: "",
+      gstName: "",
+      //product
+      productName: "",
+      productPrice: "",
+      productQuantity: "",
+      productSerialNo: "",
+      //payment
+      paymentType: "",
+      paymentDetails: "",
+      paidAmount: "",
+      deliveredBy: "",
+      deliveryStatus: "",
     });
 
     //filter in table
@@ -967,16 +980,19 @@ export default {
         });
     };
 
-    const updateInvoiceSubmit = () =>{
-      updateInvoice(updateInvoiceName.value , invoiceUpdate.value).then(()=>{
-        Loading.value=true
-        NotificationHelper.createSuccessNotification("Successfully Edited")
-        Loading.value = false
-      })
-      .catch((err)=>{
-        NotificationHelper.createErrorNotification(`Something Problem in updating the invoice ${err}`)
-      })
-    }
+    const updateInvoiceSubmit = () => {
+      updateInvoice(updateInvoiceName.value, invoiceUpdate.value)
+        .then(() => {
+          Loading.value = true;
+          NotificationHelper.createSuccessNotification("Successfully Edited");
+          Loading.value = false;
+        })
+        .catch((err) => {
+          NotificationHelper.createErrorNotification(
+            `Something Problem in updating the invoice ${err}`
+          );
+        });
+    };
 
     const gstValueGenerate = onMounted(() => {
       let price = invoiceCreate.value.price;
@@ -990,30 +1006,28 @@ export default {
       individualInvoice(name).then((data) => {
         let apidata = data.data;
         apidata.map((info) => {
-            updateInvoiceName.value = info.name
-            invoiceUpdate.value.name = info.name
-            invoiceUpdate.value.phone = info.phone
-            invoiceUpdate.value.address = info.address
-            invoiceUpdate.value.email = info.email
-            invoiceUpdate.value.gst = info.gst
-            invoiceUpdate.value.gstAddress = info.gstAddress
-            invoiceUpdate.value.gstName = info.gstName
-            invoiceUpdate.value.productName = info.productName
-            invoiceUpdate.value.productPrice = info.productPrice
-            invoiceUpdate.value.productQuantity = info.productQuantity
-            invoiceUpdate.value.productSerialNo = info.productSerialNo
-            invoiceUpdate.value.paymentType = info.paymentType
-            invoiceUpdate.value.paymentDetails = info.paymentDetails
-            invoiceUpdate.value.paidAmount = info.paidAmount
-            invoiceUpdate.value.deliveredBy = info.deliveredBy
-            invoiceUpdate.value.deliveryStatus = info.deliveryStatus
+          updateInvoiceName.value = info.name;
+          invoiceUpdate.value.name = info.name;
+          invoiceUpdate.value.phone = info.phone;
+          invoiceUpdate.value.address = info.address;
+          invoiceUpdate.value.email = info.email;
+          invoiceUpdate.value.gst = info.gst;
+          invoiceUpdate.value.gstAddress = info.gstAddress;
+          invoiceUpdate.value.gstName = info.gstName;
+          invoiceUpdate.value.productName = info.productName;
+          invoiceUpdate.value.productPrice = info.productPrice;
+          invoiceUpdate.value.productQuantity = info.productQuantity;
+          invoiceUpdate.value.productSerialNo = info.productSerialNo;
+          invoiceUpdate.value.paymentType = info.paymentType;
+          invoiceUpdate.value.paymentDetails = info.paymentDetails;
+          invoiceUpdate.value.paidAmount = info.paidAmount;
+          invoiceUpdate.value.deliveredBy = info.deliveredBy;
+          invoiceUpdate.value.deliveryStatus = info.deliveryStatus;
         });
       });
     };
 
     let updateInvoiceName = ref("");
-
-    
 
     return {
       //variables
@@ -1036,6 +1050,7 @@ export default {
       updateInvoiceName,
       link,
       Loading,
+      search,
       //functions
       whatsAppUrl,
       SubmitInvoice,
@@ -1043,7 +1058,7 @@ export default {
       editStatusButton,
       invoicesLoadTable,
       openInvoice,
-      updateInvoiceSubmit
+      updateInvoiceSubmit,
     };
   },
 };
