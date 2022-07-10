@@ -203,17 +203,17 @@ export default {
       {
         title: "Transport",
         description:
-          "TRANSPORT/LIFTING CHARGES WILL BE BORN BY THE CUSTOMER.(1000/-)",
+          "TRANSPORT / LIFTING CHARGES WILL BE BORN BY THE CUSTOMER.",
       },
       {
         title: "Plumber",
         description:
-          " PLUMBER SHOULD BE PROVIDED AT THE TIME OF INSTALLATION (OR) OUR PLUMBERS MIGHT ATTRACT PLUMBING CHARGES. (1500-3500/-)",
+          " PLUMBER SHOULD BE PROVIDED AT THE TIME OF INSTALLATION (OR) OUR PLUMBERS MIGHT ATTRACT PLUMBING CHARGES.",
       },
       {
         title: "Plumbing Material",
         description:
-          "PLUMBING MATERIALS / ELECTRICAL CONNECTION BY CUSTOMER, Plumbing MATERIAL(5000-6000/-) Approx.",
+          "PLUMBING MATERIALS / ELECTRICAL CONNECTION BY CUSTOMER, Plumbing MATERIAL.",
       },
       {
         title: "Electric Socket If purchased Auto Softener",
