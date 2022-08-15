@@ -674,15 +674,19 @@
               align="justify"
               narrow-indicator
             >
-              <q-tab name="mails" label="Invoices" />
-              <q-tab name="alarms" label="Gst Invoices" />
+              <q-tab name="invoices" label="Invoices" />
+              <q-tab name="gstinvoices" label="Gst Invoices" />
             </q-tabs>
 
             <q-separator />
             <!-- tab panels -->
             <q-tab-panels v-model="tab" animated>
-              <q-tab-panel name="mails">
+              <q-tab-panel name="invoices">
                 <!-- new table -->
+                <div v-if="invoicesLoad">
+                <InvoiceLoader/>
+                </div>
+                <div v-else>
                 <q-table
                   title="Invoices"
                   :rows="rows"
@@ -751,16 +755,17 @@
                               color="green"
                               icon="open_in_new"
                             />
-                            <q-btn outline color="red" icon="delete" />
+                            <q-btn outline color="red" icon="delete" @click="deleteInvoice(props.row.name)" />
                           </q-btn-group>
                         </div>
                       </q-td>
                     </q-tr>
                   </template>
-                </q-table>
+                </q-table> 
+                </div>
               </q-tab-panel>
 
-              <q-tab-panel name="alarms">
+              <q-tab-panel name="gstinvoices">
                 <q-table title="GST Invoices" />
               </q-tab-panel>
             </q-tab-panels>
@@ -776,7 +781,12 @@ import { ref, watch, onMounted, onBeforeMount } from "vue";
 import InvoiceOperations from "./invoice";
 import NotificationHelper from "@/helpers/NotificationHelper";
 import { useRouter } from "vue-router";
+import InvoiceLoader from "../../components/loaders/invoiceLoader.vue";
+
 export default {
+  components:{
+    InvoiceLoader
+},
   setup() {
     let invoiceStatus = ref("Invoice Preview");
     let invoiceStatusColor = ref("text-white text-center");
@@ -786,21 +796,25 @@ export default {
     let Loading = ref(false);
     let invoiceSubmit = ref(false);
     let gst = ref(false);
-    let tab = ref("mails");
+    let tab = ref("invoices");
     let date = new Date().getDate();
     let year = new Date().getFullYear();
     let month = new Date().getMonth();
     let editStatus = ref(false);
+    let invoicesLoad = ref(false)
     let link = `https://aquakart.store/liveinvoice`;
     let search = ref("")
+    let reload = ref(false)
 
     const Router = useRouter();
-    const { createInvoice, loadInvoices, updateInvoice, individualInvoice } =
+    const { createInvoice, loadInvoices, updateInvoice, individualInvoice , removeInvoice } =
       InvoiceOperations();
 
     const whatsAppUrl = (url) => {
       console.log(url);
     };
+
+    
 
     watch(gst, () => {
       if (gst.value === true) {
@@ -951,6 +965,30 @@ export default {
       },
     ]);
 
+    watch(reload , ()=>{
+      if(reload.value===true){
+        invoicesLoad.value=true
+        loadInvoices().then((data)=>{
+          let newData = []
+            rows.value=newData
+           let apidata = data.data;
+        apidata.map((data) => {
+          rows.value.push({
+            name: data.name,
+            product: data.productName,
+            price: data.productPrice,
+            phone: data.phone,
+            paymentStatus: data.paymentDetails,
+            quantity: data.productQuantity,
+            delivered: data.deliveryStatus,
+          });
+        });
+          invoicesLoad.value=false
+          console.log("invoice" , rows.value)
+        })
+      }
+    })
+
     const SubmitInvoice = () => {
       createInvoice(invoiceCreate.value)
         .then(() => {
@@ -980,6 +1018,31 @@ export default {
         });
     };
 
+
+    watch(invoiceSubmit,()=>{
+      if(invoiceSubmit.value===true){
+        invoicesLoad.value=true
+        loadInvoices().then((data)=>{
+          let newData = []
+            rows.value=newData
+           let apidata = data.data;
+        apidata.map((data) => {
+          rows.value.push({
+            name: data.name,
+            product: data.productName,
+            price: data.productPrice,
+            phone: data.phone,
+            paymentStatus: data.paymentDetails,
+            quantity: data.productQuantity,
+            delivered: data.deliveryStatus,
+          });
+        });
+          invoicesLoad.value=false
+          console.log("invoice" , rows.value)
+        })
+      }
+    })
+
     const updateInvoiceSubmit = () => {
       updateInvoice(updateInvoiceName.value, invoiceUpdate.value)
         .then(() => {
@@ -993,6 +1056,13 @@ export default {
           );
         });
     };
+
+    const deleteInvoice = (name) =>{
+      removeInvoice(name).then(()=>{
+        reload.value=true
+        NotificationHelper.createSuccessNotification("Succesfully deleted Invoice")
+      })
+    } 
 
     const gstValueGenerate = onMounted(() => {
       let price = invoiceCreate.value.price;
@@ -1051,6 +1121,8 @@ export default {
       link,
       Loading,
       search,
+      invoicesLoad,
+      reload,
       //functions
       whatsAppUrl,
       SubmitInvoice,
@@ -1059,6 +1131,7 @@ export default {
       invoicesLoadTable,
       openInvoice,
       updateInvoiceSubmit,
+      deleteInvoice
     };
   },
 };

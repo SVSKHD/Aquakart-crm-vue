@@ -12,11 +12,15 @@ const loadInvoices = async() =>(
     await Axios.get(`${process.env.VUE_APP_API}/invoices`)
 )
 
-const updateInvoice = async(name , data) =>{
+const updateInvoice = async(name , data) =>(
  await Axios.put(`${process.env.VUE_APP_API}/invoice-update/${name}` , data)
-}
+)
+
+const removeInvoice = async(data)=>(
+    await Axios.delete(`${process.env.VUE_APP_API}/invoice-delete/${data}`)
+)
 
 const InvoiceOperations = () =>{
-    return{createInvoice , individualInvoice , loadInvoices , updateInvoice}
+    return{createInvoice , individualInvoice , loadInvoices , updateInvoice , removeInvoice}
 }
 export default InvoiceOperations
