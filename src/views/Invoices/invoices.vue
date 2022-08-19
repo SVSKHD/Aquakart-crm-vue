@@ -756,6 +756,7 @@
                               icon="open_in_new"
                             />
                             <q-btn outline color="red" icon="delete" @click="deleteInvoice(props.row.name)" />
+                            <q-btn outline color="teal-10" icon="fab fa-whatsapp" @click="whatsAppUrl(props.row.name , props.row.phone , props.row.serial)" />
                           </q-btn-group>
                         </div>
                       </q-td>
@@ -810,8 +811,9 @@ export default {
     const { createInvoice, loadInvoices, updateInvoice, individualInvoice , removeInvoice } =
       InvoiceOperations();
 
-    const whatsAppUrl = (url) => {
-      console.log(url);
+    const whatsAppUrl = (url , phone ) => {
+      console.log(`${link}/${url}` , `${phone}`);
+      
     };
 
     
@@ -883,6 +885,15 @@ export default {
       {
         name: "name",
         required: true,
+        label: "Invoice Serial",
+        align: "left",
+        field: (row) => row.serial,
+        format: (val) => `${val}`,
+        sortable: true,
+      },
+      {
+        name: "name",
+        required: true,
         label: "Customer Name",
         align: "left",
         field: (row) => row.name,
@@ -910,17 +921,17 @@ export default {
     let rows = ref([]);
 
     const openInvoice = (name) => {
-      console.log(name);
-      Router.push(`/liveinvoice/${name}`);
+      Router.push(`/liveinvoice/${name}`)
+      console.log("name" , name)
     };
 
     const invoicesLoadTable = onBeforeMount(() => {
       loadInvoices().then((data) => {
-        console.log(data.data);
         let apidata = data.data;
         apidata.map((data) => {
           rows.value.push({
             name: data.name,
+            serial:data.invoiceSerialNo,
             product: data.productName,
             price: data.productPrice,
             phone: data.phone,
@@ -984,7 +995,6 @@ export default {
           });
         });
           invoicesLoad.value=false
-          console.log("invoice" , rows.value)
         })
       }
     })
@@ -1038,7 +1048,6 @@ export default {
           });
         });
           invoicesLoad.value=false
-          console.log("invoice" , rows.value)
         })
       }
     })

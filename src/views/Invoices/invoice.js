@@ -8,6 +8,10 @@ const individualInvoice =async(data)=>(
     await Axios.get(`${process.env.VUE_APP_API}/individualinvoice/${data}`)
 )
 
+const individualInvoiceBySerial =async(data)=>(
+    await Axios.get(`${process.env.VUE_APP_API}/individualinvoice/${data}`)
+)
+
 const loadInvoices = async() =>(
     await Axios.get(`${process.env.VUE_APP_API}/invoices`)
 )
@@ -21,6 +25,8 @@ const removeInvoice = async(data)=>(
 )
 
 const InvoiceOperations = () =>{
-    return{createInvoice , individualInvoice , loadInvoices , updateInvoice , removeInvoice}
+    return{createInvoice , individualInvoice , individualInvoiceBySerial , loadInvoices , updateInvoice , removeInvoice}
 }
+
+
 export default InvoiceOperations
