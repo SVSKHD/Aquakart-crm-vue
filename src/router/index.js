@@ -10,7 +10,8 @@ import IndividualInvoice from "../views/Invoices/individualInvoice"
 import Contact from "../views/Contact/index"
 //auth
 import Signin from "../views/Auth/Signin"
-
+//transit
+import Transit from "../views/Transport/transport"
 
 const routes = [
   {
@@ -27,7 +28,9 @@ const routes = [
       //invoices
       {path:"/invoices" , name:"Invoices" , component : Invoices},
       //contact
-      {path:"/contacts" , name:"Contacts" , component:Contact}
+      {path:"/contacts" , name:"Contacts" , component:Contact},
+      //transit
+      {path:"/transit" , name:"Transport" , component:Transit}
     ]
   },
   {

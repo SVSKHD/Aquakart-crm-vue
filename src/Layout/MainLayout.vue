@@ -75,7 +75,8 @@ export default {
       {name:"Invoices" , path:"/invoices" , icon:"text_snippet"},
       {name:"Quotations" , path:"/quotations", icon:"inventory"},
       {name:"Contacts" , path:"/contacts" , icon:"people"},
-      {name:"reminders" , path:"/reminders" , icon:"task"}
+      {name:"reminders" , path:"/reminders" , icon:"task"},
+      {name:"transit" , path:"/transit" , icon:"fas fa-truck"}
       ])
     let mode = ref(false);
     const Router = useRouter()

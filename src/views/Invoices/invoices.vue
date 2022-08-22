@@ -923,6 +923,7 @@ export default {
     const openInvoice = (name) => {
       Router.push(`/liveinvoice/${name}`)
       console.log("name" , name)
+      
     };
 
     const invoicesLoadTable = onBeforeMount(() => {
