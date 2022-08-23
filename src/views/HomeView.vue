@@ -20,6 +20,7 @@
 
     <div class="row">
       <div class="col-md-6 col-lg-6 col-xs-12 col-xs-12">
+        <div class="text-h6 text-center">Crm Offline Operations</div>
         <div class="row">
           <template v-for="(item, index) in menu" :key="index">
             <div class="col-md-4 col-lg-4 col-xs-12 col-sm-12 q-pa-xs">
@@ -60,7 +61,8 @@
         </div>
       </div>
        <div class="col-md-6 col-lg-6 col-xs-12 col-xs-12">
-        <div class="row">
+       <div class="text-h6 text-center">Aqua Online Operations</div>
+       <div class="row">
           <template v-for="(item, index) in onlineMenu" :key="index">
             <div class="col-md-4 col-lg-4 col-xs-12 col-sm-12 q-pa-xs">
               <div class="q-pa-md">
@@ -120,7 +122,8 @@ export default {
       { name: "Quotations", path: "/quotations", icon: "inventory" },
       { name: "Contacts", path: "/contacts", icon: "people" },
       { name: "reminders", path: "/reminders", icon: "task" },
-       {name:"transit" , path:"/transit" , icon:"fas fa-truck"}
+       {name:"transit" , path:"/transit" , icon:"fas fa-truck"},
+       {name:"Stock" , path:"/stock" , icon:"fas fa-shopping-bag"}
     ]);
     let onlineMenu = ref([
        { name: "Products", path: "/aqua/products", icon: "fas fa-shopping-bag" },

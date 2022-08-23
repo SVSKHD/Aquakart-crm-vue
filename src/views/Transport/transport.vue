@@ -1,5 +1,12 @@
 <template>
-<h1>Transport</h1>
+<Transport/>
 </template>
 
-<script></script>
+<script>
+import Transport from "@/components/Pages/Transport/Transport.vue"
+export default{
+    components:{
+    Transport,
+}
+}
+</script>
