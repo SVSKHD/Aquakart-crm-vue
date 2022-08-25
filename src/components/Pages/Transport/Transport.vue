@@ -1,6 +1,19 @@
 <template>
 <div class="row">
     <div class="col-md-6 col-lg-6 col-xs-12 col-xs-12">
+        
+        <div class="q-mb-md">
+            <form>
+                <q-card>
+                    <q-card-section class="row">
+                        <q-input class="col-md-2" outlined dense placeholder="area"/>
+                         <q-input class="col-md-2" outlined dense placeholder="distance"/>
+                          <q-input class="col-md-2" outlined dense placeholder="product delivered"/>
+                    </q-card-section>
+                </q-card>
+            </form>
+        </div>
+
         <q-table/>
     </div>
     <div class="col-md-6 col-lg-6 col-xs-12 col-xs-12"></div>
