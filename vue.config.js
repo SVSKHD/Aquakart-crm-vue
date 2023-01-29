@@ -9,5 +9,8 @@ module.exports = defineConfig({
       importStrategy: 'kebab',
       rtlSupport: false
     }
-  }
+  },
+  devServer: {
+    proxy: `${process.env.VUE_APP_BASE_API}`,
+  },
 })

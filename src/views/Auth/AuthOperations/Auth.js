@@ -1,5 +1,5 @@
 export const loginOperation = async (data) => (
-  await fetch(`${process.env.VUE_APP_API}/login`, {
+  await fetch(`${process.env.VUE_APP_API}/user-login`, {
     method: "POST",
     headers: {
       Accept: "application/json",
