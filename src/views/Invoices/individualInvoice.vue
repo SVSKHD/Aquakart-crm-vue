@@ -151,7 +151,7 @@ export default {
     let date = ref("");
     let Loading = ref(false);
     let gst = ref(false);
-    let basePrice = ref("")
+    let basePrice = ref("");
     const columns = [
       {
         name: "name",
@@ -169,9 +169,9 @@ export default {
         field: "calories",
         sortable: true,
       },
-      { name: "fat", label: "Product-Base-Price", field: "basePrice"},
+      { name: "fat", label: "Product-Base-Price", field: "basePrice" },
       { name: "fat", label: "GST(18%)", field: "gst", sortable: true },
-      
+
       { name: "carbs", label: "Price", field: "carbs" },
     ];
 
@@ -192,7 +192,7 @@ export default {
       //product
       productName: "",
       productPrice: "",
-      productBasePrice:"",
+      productBasePrice: "",
       productQuantity: "",
       productSerialNo: "",
       //payment
@@ -255,7 +255,9 @@ export default {
         Data.value.paymentType = apiData[0].paymentType;
         Data.value.productName = apiData[0].productName;
         Data.value.productPrice = apiData[0].productPrice;
-        Data.value.productBasePrice = Math.floor(apiData[0].paidAmount * 0.8474594);
+        Data.value.productBasePrice = Math.floor(
+          apiData[0].paidAmount * 0.8474594
+        );
         Data.value.productQuantity = apiData[0].productQuantity;
         Data.value.productSerialNo = apiData[0].productSerialNo;
         date.value = apiData[0].date;
@@ -263,7 +265,7 @@ export default {
         rows.value.push({
           name: apiData[0].productName,
           calories: apiData[0].productQuantity,
-          basePrice:Math.floor(apiData[0].paidAmount * 0.8474594),
+          basePrice: `₹ ${Math.floor(apiData[0].paidAmount * 0.8474594)}/-`,
           gst: `₹ ${gstValueGenerate()} /-`,
           carbs: `₹ ${apiData[0].productPrice} /-`,
         });
