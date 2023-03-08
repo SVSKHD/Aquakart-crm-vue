@@ -8,7 +8,7 @@
     <div v-else class="q-pa-md">
       <div class="row">
         <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12">
-           <div class="text-right q-pa-md">
+          <div class="text-right q-pa-md">
             <q-btn flat dense @click="invoicePrint" icon="print" />
           </div>
         </div>
@@ -31,15 +31,15 @@
                     <div class="text-h6" style="color: #243a73">
                       Date : {{ date }}
                     </div>
-                      <div class="text-h6" style="color: #243a73">
-                      Invoice No : {{Data.invoiceNo}}
+                    <div class="text-h6" style="color: #243a73">
+                      Invoice No : {{ Data.invoiceNo }}
                     </div>
                   </div>
                 </div>
               </div>
               <br />
               <div class="row q-pa-md">
-                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"/>
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12" />
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-left">
                   <div class="text-h4">Customer Details</div>
                   <br />
@@ -60,20 +60,22 @@
                   <div class="text-h4 text-left">Business Details</div>
                   <br />
                   <div class="q-pa-sm text-left">
-                    <div class="text-h6">Business Name: {{Data.gstName}}</div>
-                    <div class="text-h6">Business No: {{Data.gstNo}}</div>
-                    <div class="text-subtext">Business Address : {{Data.gstAddress}}</div>
-                    <div class="text-subtext2">Business Phone : {{Data.phone}}</div>
+                    <div class="text-h6">Business Name: {{ Data.gstName }}</div>
+                    <div class="text-h6">Business No: {{ Data.gstNo }}</div>
+                    <div class="text-subtext">
+                      Business Address : {{ Data.gstAddress }}
+                    </div>
+                    <div class="text-subtext2">
+                      Business Phone : {{ Data.phone }}
+                    </div>
                   </div>
                 </div>
-                
+
                 <div
                   v-else
                   class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center"
-                >
-                 
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"/>
+                ></div>
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12" />
               </div>
               <hr />
               <q-table
@@ -131,9 +133,7 @@
           </q-card>
         </div>
 
-        <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12">
-         
-        </div>
+        <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12"></div>
       </div>
     </div>
   </div>
@@ -151,6 +151,7 @@ export default {
     let date = ref("");
     let Loading = ref(false);
     let gst = ref(false);
+    let basePrice = ref("")
     const columns = [
       {
         name: "name",
@@ -168,13 +169,15 @@ export default {
         field: "calories",
         sortable: true,
       },
-      { name: "fat", label: "GST", field: "fat", sortable: true },
+      { name: "fat", label: "Product-Base-Price", field: "basePrice"},
+      { name: "fat", label: "GST(18%)", field: "gst", sortable: true },
+      
       { name: "carbs", label: "Price", field: "carbs" },
     ];
 
     const rows = ref([]);
     let Data = ref({
-      invoiceNo:"",
+      invoiceNo: "",
       //customer
       name: "",
       phone: "",
@@ -189,6 +192,7 @@ export default {
       //product
       productName: "",
       productPrice: "",
+      productBasePrice:"",
       productQuantity: "",
       productSerialNo: "",
       //payment
@@ -237,8 +241,7 @@ export default {
       Loading.value = true;
       individualInvoice(match).then((data) => {
         let apiData = data.data;
-        console.log(data)
-        Data.value.invoiceNo = apiData[0].invoiceSerialNo
+        Data.value.invoiceNo = apiData[0].invoiceSerialNo;
         Data.value.name = apiData[0].name;
         Data.value.address = apiData[0].address;
         Data.value.phone = apiData[0].phone;
@@ -252,6 +255,7 @@ export default {
         Data.value.paymentType = apiData[0].paymentType;
         Data.value.productName = apiData[0].productName;
         Data.value.productPrice = apiData[0].productPrice;
+        Data.value.productBasePrice = Math.floor(apiData[0].paidAmount * 0.8474594);
         Data.value.productQuantity = apiData[0].productQuantity;
         Data.value.productSerialNo = apiData[0].productSerialNo;
         date.value = apiData[0].date;
@@ -259,15 +263,16 @@ export default {
         rows.value.push({
           name: apiData[0].productName,
           calories: apiData[0].productQuantity,
-          fat: `₹ ${gstValueGenerate()} /-`,
+          basePrice:Math.floor(apiData[0].paidAmount * 0.8474594),
+          gst: `₹ ${gstValueGenerate()} /-`,
           carbs: `₹ ${apiData[0].productPrice} /-`,
         });
       });
     });
 
     const gstValueGenerate = () => {
-      let price = Data.value.paidAmount - 2800;
-      let gst = price * 0.18;
+      let basePrice = Math.floor(Data.value.paidAmount * 0.8474594);
+      let gst = Math.floor(basePrice * 0.18);
       return gst;
     };
 
@@ -278,6 +283,7 @@ export default {
       //variables
       match,
       termsAndConditions,
+      basePrice,
       Data,
       gst,
       date,
