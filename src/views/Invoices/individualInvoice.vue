@@ -160,19 +160,16 @@ export default {
         align: "left",
         field: (row) => row.name,
         format: (val) => `${val}`,
-        sortable: true,
       },
       {
         name: "calories",
         align: "center",
         label: "Product Quantity",
-        field: "calories",
-        sortable: true,
+        field: "calories", 
       },
       { name: "fat", label: "Product-Base-Price", field: "basePrice" },
-      { name: "fat", label: "GST(18%)", field: "gst", sortable: true },
-
-      { name: "carbs", label: "Price", field: "carbs" },
+      { name: "fat", label: "GST(18%)", field: "gst"},
+      { name: "carbs", label: "Price", field: "price" },
     ];
 
     const rows = ref([]);
@@ -267,7 +264,7 @@ export default {
           calories: apiData[0].productQuantity,
           basePrice: `₹ ${Math.floor(apiData[0].paidAmount * 0.8474594)}/-`,
           gst: `₹ ${gstValueGenerate()} /-`,
-          carbs: `₹ ${apiData[0].productPrice} /-`,
+          price: `₹ ${apiData[0].productPrice} /-`,
         });
       });
     });
