@@ -8,10 +8,13 @@ import { Quasar } from 'quasar'
 import quasarUserOptions from './quasar-user-options'
 import controls from "./components/commonComponents/control"
 import "@/assets/app.css"
+import firebaseApp from './firebase/firebase'
+
 
 const AQ = createApp(App)
 const head = createHead()
 controls(AQ)
+firebaseApp
 AQ
 .use(Quasar, quasarUserOptions)
 .use(store)
